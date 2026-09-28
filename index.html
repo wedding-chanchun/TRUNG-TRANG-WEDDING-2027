@@ -78,19 +78,121 @@
   </header>
 
   <main>
-    <section class="story section" id="story">
-      <div class="corner corner--left"></div>
-      <div class="corner corner--right"></div>
 
-      <div class="story__inner">
+    <section class="story story--cinematic section" id="story">
+      <div class="story__atmosphere" aria-hidden="true"></div>
+      <div class="story__petals" aria-hidden="true"></div>
+
+      <div class="story__intro">
         <p class="eyebrow">OUR STORY</p>
-        <img class="divider" src="assets/images/divider.png" alt="">
-        <h2>Một câu chuyện nhỏ</h2>
-        <div class="script-title">dẫn đến một ngày lớn.</div>
-        <p class="story__text">
-          Hai người, hai hành trình,<br>
-          và một ngày chúng ta quyết định bước tiếp cùng nhau.
+        <div class="story__ornament">❦</div>
+        <h2>It wasn't one<br><em>grand moment.</em></h2>
+        <p class="story__opening">
+          It was a collection of little moments,<br>
+          little adventures, and a life slowly built together.
         </p>
+      </div>
+
+      <div class="story__timeline">
+        <article class="story-card story-card--wide story-reveal">
+          <div class="story-card__image">
+            <img src="assets/images/story/01-our-story-hero.jpg"
+                 alt="Thành Trung và Nhật Trang trong một chuyến đi"
+                 loading="lazy">
+          </div>
+          <div class="story-card__copy">
+            <span class="story-card__number">01</span>
+            <p class="story-card__eyebrow">THE JOURNEY</p>
+            <h3>Hai người.<br>Một hành trình.</h3>
+            <p>Chúng mình bắt đầu bằng những chuyến đi, những khung cảnh mới và những ngày thật bình thường bên nhau.</p>
+          </div>
+        </article>
+
+        <article class="story-card story-card--split story-reveal">
+          <div class="story-card__copy">
+            <span class="story-card__number">02</span>
+            <p class="story-card__eyebrow">THE LITTLE MOMENTS</p>
+            <h3>Những chuyện<br>rất nhỏ.</h3>
+            <p>Những khoảnh khắc chẳng cần phải hoàn hảo, nhưng sau này nhìn lại vẫn khiến chúng mình mỉm cười.</p>
+          </div>
+          <div class="story-card__image">
+            <img src="assets/images/story/02-little-moments.jpg"
+                 alt="Một khoảnh khắc đời thường của hai người"
+                 loading="lazy">
+          </div>
+        </article>
+
+        <article class="story-card story-card--feature story-reveal">
+          <div class="story-card__image">
+            <img src="assets/images/story/03-adventure-kayak.jpg"
+                 alt="Thành Trung và Nhật Trang chèo kayak"
+                 loading="lazy">
+            <span class="story-card__image-caption">SOMEWHERE ALONG THE WAY</span>
+          </div>
+          <div class="story-card__copy">
+            <span class="story-card__number">03</span>
+            <p class="story-card__eyebrow">ADVENTURES TOGETHER</p>
+            <h3>Đi đâu cũng vui<br>khi đi cùng nhau.</h3>
+            <p>Thêm một nơi để nhớ. Thêm một câu chuyện để kể.</p>
+          </div>
+        </article>
+
+        <div class="story-pause story-reveal">
+          <span>WE COLLECTED</span>
+          <strong>places, laughter<br>&amp; little memories.</strong>
+        </div>
+
+        <article class="story-card story-card--split story-card--reverse story-reveal">
+          <div class="story-card__image">
+            <img src="assets/images/story/04-adventure-culture.jpg"
+                 alt="Thành Trung và Nhật Trang trong chuyến khám phá"
+                 loading="lazy">
+          </div>
+          <div class="story-card__copy">
+            <span class="story-card__number">04</span>
+            <p class="story-card__eyebrow">THE YEARS IN BETWEEN</p>
+            <h3>Thời gian trôi qua.</h3>
+            <p>Có những ngày vui, những ngày mệt, nhưng chúng mình vẫn lớn lên cùng nhau, như thế.</p>
+          </div>
+        </article>
+
+        <div class="story-gallery story-reveal">
+          <figure>
+            <img src="assets/images/story/05-everyday-01.jpg" alt="Khoảnh khắc đời thường" loading="lazy">
+          </figure>
+          <figure>
+            <img src="assets/images/story/09-together.jpg" alt="Thành Trung và Nhật Trang bên nhau" loading="lazy">
+          </figure>
+          <figure>
+            <img src="assets/images/story/10-together.jpg" alt="Một khoảnh khắc bên nhau" loading="lazy">
+          </figure>
+        </div>
+
+        <article class="story-card story-card--wide story-card--final story-reveal">
+          <div class="story-card__copy">
+            <span class="story-card__number">05</span>
+            <p class="story-card__eyebrow">AND NOW...</p>
+            <h3>Không chỉ là<br>những kỷ niệm.</h3>
+            <p>
+              Chúng mình nhận ra rằng điều đẹp nhất không phải là đã đi qua bao nhiêu nơi,
+              mà là có một người để cùng trở về.
+            </p>
+          </div>
+          <div class="story-card__image">
+            <img src="assets/images/story/11-next-chapter.jpg"
+                 alt="Thành Trung và Nhật Trang bên nhau"
+                 loading="lazy">
+          </div>
+        </article>
+
+        <div class="story-ending story-reveal">
+          <p class="story-ending__line">And then we realized...</p>
+          <h3>We were building<br><em>a life together.</em></h3>
+          <div class="story-ending__rule"></div>
+          <p class="story-ending__date">15 · 05 · 2027</p>
+          <span class="story-ending__label">OUR NEXT CHAPTER</span>
+          <p class="story-ending__small">A new chapter begins.</p>
+        </div>
       </div>
     </section>
 
@@ -191,6 +293,21 @@
         openWeddingInvitation();
       }
     });
+
+    const storyReveals = document.querySelectorAll('.story-reveal');
+    if ('IntersectionObserver' in window) {
+      const storyObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      storyReveals.forEach(el => storyObserver.observe(el));
+    } else {
+      storyReveals.forEach(el => el.classList.add('is-visible'));
+    }
 
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', e => {
