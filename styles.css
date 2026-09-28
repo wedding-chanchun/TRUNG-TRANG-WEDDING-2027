@@ -1,3 +1,193 @@
+
+/* =========================
+   FRONT WEDDING INVITATION
+   ========================= */
+body:not(.invitation-opened){
+  overflow:hidden;
+}
+.invitation-cover{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:#f8e8e6;
+  transition:opacity .85s ease, visibility .85s ease;
+}
+.invitation-cover.is-open{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.cover__background{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,247,244,.24),rgba(255,237,235,.28)),
+    url("assets/images/section-bg-01.jpg") center/cover no-repeat;
+  transform:scale(1.03);
+}
+.cover__petals{
+  position:absolute;
+  inset:0;
+  background:url("assets/images/petals.png") center/cover no-repeat;
+  opacity:.20;
+}
+.cover__flowers{
+  position:absolute;
+  z-index:2;
+  width:min(34vw,430px);
+  height:min(68vh,720px);
+  background-size:contain;
+  background-repeat:no-repeat;
+  pointer-events:none;
+}
+.cover__flowers--left{
+  left:-115px;
+  top:-35px;
+  background-image:url("assets/images/floral-corner-left.png");
+}
+.cover__flowers--right{
+  right:-115px;
+  bottom:-35px;
+  background-image:url("assets/images/floral-bottom-right.png");
+}
+.cover__card{
+  position:relative;
+  z-index:5;
+  width:min(470px,82vw);
+  min-height:min(650px,82vh);
+  padding:78px 42px 62px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#644c4b;
+  background:rgba(255,249,246,.76);
+  border:1px solid rgba(176,119,117,.25);
+  box-shadow:0 25px 80px rgba(102,62,61,.17);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  cursor:pointer;
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.cover__card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 32px 90px rgba(102,62,61,.22);
+}
+.cover__arch{
+  position:absolute;
+  inset:12px;
+  background:url("assets/images/arch-frame.png") center/92% 100% no-repeat;
+  opacity:.38;
+  pointer-events:none;
+}
+.cover__ornament{
+  position:relative;
+  z-index:2;
+  color:#b76e73;
+  font:400 30px/1 var(--serif);
+  margin-bottom:13px;
+}
+.cover__eyebrow{
+  position:relative;
+  z-index:2;
+  margin:0 0 19px;
+  color:#8b5a5d;
+  font:500 10px/1 var(--sans);
+  letter-spacing:.38em;
+}
+.cover__small{
+  position:relative;
+  z-index:2;
+  margin:0 0 25px;
+  color:#8a6866;
+  font:400 10px/1 var(--sans);
+  letter-spacing:.2em;
+}
+.cover__card h1{
+  position:relative;
+  z-index:2;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font:600 clamp(40px,5vw,63px)/.83 var(--serif);
+  letter-spacing:.035em;
+}
+.cover__card h1 em{
+  margin:12px 0 8px;
+  color:#bd7479;
+  font:400 43px/.65 var(--script);
+}
+.cover__line{
+  position:relative;
+  z-index:2;
+  width:90px;
+  height:1px;
+  margin:31px 0 18px;
+  background:#c28c87;
+}
+.cover__year{
+  position:relative;
+  z-index:2;
+  margin:0;
+  color:#81585a;
+  font:500 25px/1 var(--serif);
+  letter-spacing:.3em;
+  padding-left:.3em;
+}
+.cover__button{
+  position:relative;
+  z-index:3;
+  margin-top:48px;
+  min-width:170px;
+  padding:14px 24px;
+  border:1px solid #bd777b;
+  border-radius:999px;
+  background:rgba(184,95,103,.92);
+  color:#fff;
+  font:500 10px/1 var(--sans);
+  letter-spacing:.22em;
+  box-shadow:0 10px 28px rgba(137,65,70,.20);
+  pointer-events:none;
+}
+.cover__button span{
+  margin-left:8px;
+  font-size:14px;
+}
+.cover__hint{
+  position:relative;
+  z-index:2;
+  margin:16px 0 0;
+  color:#987271;
+  font:500 8px/1 var(--sans);
+  letter-spacing:.3em;
+}
+.wedding-page{
+  min-height:100vh;
+}
+@media(max-width:700px){
+  .cover__flowers{
+    width:270px;
+    height:410px;
+    opacity:.78;
+  }
+  .cover__flowers--left{left:-125px;top:-20px}
+  .cover__flowers--right{right:-125px;bottom:-20px}
+  .cover__card{
+    width:82vw;
+    min-height:73vh;
+    padding:58px 24px 48px;
+  }
+  .cover__card h1{font-size:43px}
+  .cover__card h1 em{font-size:39px}
+  .cover__eyebrow{font-size:8px;letter-spacing:.28em}
+  .cover__small{font-size:8px}
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root{
@@ -178,7 +368,9 @@ h2{
 }
 .section-shade{
   position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(125,67,74,.20),rgba(255,215,213,.05),rgba(120,70,75,.18));
+  background:
+    linear-gradient(90deg,rgba(255,239,235,.16),rgba(255,246,243,.24),rgba(255,235,232,.13)),
+    radial-gradient(circle at 50% 48%,rgba(255,250,247,.18),rgba(255,226,222,.06) 48%,rgba(123,67,72,.08));
 }
 .save-date__inner{
   position:relative;
@@ -186,24 +378,34 @@ h2{
   width:min(900px,92%);
   text-align:center;
   padding:95px 0;
-  text-shadow:0 2px 14px rgba(91,49,53,.22);
+  color:#70494b;
+  text-shadow:0 1px 8px rgba(255,255,255,.72);
+}
+.save-date .eyebrow{
+  color:#7d4e52;
+  text-shadow:none;
 }
 .save-date h2{
-  color:#fff;
+  color:#9f555c;
   font-size:clamp(90px,14vw,150px);
   font-weight:400;
   margin:12px 0;
+  text-shadow:0 2px 8px rgba(255,255,255,.82);
 }
 .update-note{
   margin:0 0 36px;
+  color:#815154;
   font-size:10px;
+  font-weight:500;
   letter-spacing:.28em;
+  text-shadow:0 1px 7px rgba(255,255,255,.9);
 }
 .date-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  border-top:1px solid rgba(255,255,255,.65);
-  border-bottom:1px solid rgba(255,255,255,.65);
+  border-top:1px solid rgba(130,72,77,.42);
+  border-bottom:1px solid rgba(130,72,77,.42);
+  background:rgba(255,247,244,.13);
 }
 .date-grid article{
   padding:27px 18px;
@@ -211,10 +413,25 @@ h2{
   flex-direction:column;
   gap:7px;
 }
-.date-grid article+article{border-left:1px solid rgba(255,255,255,.65)}
-.date-grid span{font:500 11px var(--sans);letter-spacing:.28em}
-.date-grid strong{font:500 21px var(--serif);letter-spacing:.15em}
-.date-grid small{font:400 9px var(--sans);letter-spacing:.12em}
+.date-grid article+article{border-left:1px solid rgba(130,72,77,.42)}
+.date-grid span{
+  color:#855257;
+  font:500 11px var(--sans);
+  letter-spacing:.28em;
+  text-shadow:0 1px 6px rgba(255,255,255,.8);
+}
+.date-grid strong{
+  color:#704448;
+  font:600 21px var(--serif);
+  letter-spacing:.15em;
+  text-shadow:0 1px 7px rgba(255,255,255,.85);
+}
+.date-grid small{
+  color:#7c5053;
+  font:500 9px var(--sans);
+  letter-spacing:.12em;
+  text-shadow:0 1px 6px rgba(255,255,255,.85);
+}
 
 /* LOCATION */
 .location{min-height:760px;display:grid;place-items:center;text-align:center}

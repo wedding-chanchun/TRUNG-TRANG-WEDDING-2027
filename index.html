@@ -13,7 +13,38 @@
 </head>
 
 <body>
-  <div class="petals-fixed" aria-hidden="true"></div>
+  <section class="invitation-cover" id="invitationCover" aria-label="Mở thiệp cưới">
+    <div class="cover__background"></div>
+    <div class="cover__petals"></div>
+    <div class="cover__flowers cover__flowers--left"></div>
+    <div class="cover__flowers cover__flowers--right"></div>
+
+    <div class="cover__card" id="openInvitation" role="button" tabindex="0" aria-label="Nhấn để mở thiệp">
+      <div class="cover__arch"></div>
+      <div class="cover__ornament">❦</div>
+      <p class="cover__eyebrow">WEDDING INVITATION</p>
+      <p class="cover__small">TRÂN TRỌNG KÍNH MỜI</p>
+
+      <h1>
+        <span>THÀNH TRUNG</span>
+        <em>&amp;</em>
+        <span>NHẬT TRANG</span>
+      </h1>
+
+      <div class="cover__line"></div>
+      <p class="cover__year">2027</p>
+
+      <button class="cover__button" type="button">
+        MỞ THIỆP
+        <span>♡</span>
+      </button>
+
+      <p class="cover__hint">CHẠM ĐỂ MỞ</p>
+    </div>
+  </section>
+
+  <div class="wedding-page" id="weddingPage" aria-hidden="true">
+  <div class="petals-fixed aria-hidden="true"></div>
 
   <header class="hero" id="home">
     <div class="hero__wash"></div>
@@ -131,6 +162,29 @@
   </footer>
 
   <script>
+    const cover = document.getElementById('invitationCover');
+    const openInvitation = document.getElementById('openInvitation');
+    const weddingPage = document.getElementById('weddingPage');
+
+    function openWeddingInvitation(){
+      if (cover.classList.contains('is-open')) return;
+      cover.classList.add('is-open');
+      weddingPage.setAttribute('aria-hidden','false');
+      document.body.classList.add('invitation-opened');
+      setTimeout(() => {
+        cover.remove();
+        window.scrollTo({top:0, behavior:'instant'});
+      }, 900);
+    }
+
+    openInvitation.addEventListener('click', openWeddingInvitation);
+    openInvitation.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openWeddingInvitation();
+      }
+    });
+
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', e => {
         const target = document.querySelector(link.getAttribute('href'));
@@ -140,5 +194,6 @@
       });
     });
   </script>
+  </div>
 </body>
 </html>
