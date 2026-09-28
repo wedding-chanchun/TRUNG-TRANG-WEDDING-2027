@@ -1060,3 +1060,82 @@ h2{
   .cover__line{margin-top:25px}
   .cover__button{margin-top:30px}
 }
+
+
+/* V2.5 — HERO TYPOGRAPHY BALANCE
+   Fix mobile name wrapping and restore editorial proportion.
+*/
+.hero__content{
+  width:min(92vw,720px);
+  padding:64px 18px 76px;
+}
+.hero h1{
+  width:100%;
+  max-width:100%;
+  margin:14px auto 20px;
+  font-size:clamp(42px,7vw,82px);
+  line-height:.82;
+  letter-spacing:.018em;
+}
+.hero h1 span{
+  display:block;
+  width:100%;
+  white-space:nowrap;
+}
+.hero h1 em{
+  margin:17px 0 10px;
+  font-size:clamp(42px,5.5vw,66px);
+  line-height:.65;
+}
+.hero__subtitle{
+  margin:25px 0 7px;
+  font-size:10px;
+  letter-spacing:.30em;
+}
+.hero__year{
+  font-size:31px;
+  letter-spacing:.20em;
+}
+.hero__kicker{
+  margin-bottom:10px;
+}
+.hero__date-line{
+  margin-top:14px;
+}
+@media(max-width:700px){
+  .hero{min-height:100svh}
+  .hero__content{
+    width:100%;
+    padding:50px 14px 68px;
+    transform:translateY(-6px);
+  }
+  .hero h1{
+    font-size:40px;
+    line-height:.86;
+    letter-spacing:.012em;
+    margin:13px auto 18px;
+  }
+  .hero h1 span{white-space:nowrap}
+  .hero h1 em{
+    margin:15px 0 9px;
+    font-size:40px;
+  }
+  .hero__subtitle{
+    margin-top:23px;
+    font-size:8px;
+    letter-spacing:.24em;
+    white-space:nowrap;
+  }
+  .hero__year{
+    font-size:29px;
+    letter-spacing:.18em;
+  }
+  .hero__floral--left,.hero__floral--right{
+    opacity:.52;
+  }
+}
+@media(max-width:370px){
+  .hero h1{font-size:36px}
+  .hero h1 em{font-size:37px}
+  .hero__subtitle{font-size:7px;letter-spacing:.20em}
+}
