@@ -1580,3 +1580,73 @@ h2{
   .memorybook__ending-copy>span{font-size:7px;letter-spacing:.28em;}
   .memorybook__ending-script{font-size:21px;}
 }
+
+/* =========================================================
+   V2.8 — OUR STORY / CONTINUOUS MEMORY FLOW
+   Mobile refinement: tighter chapters, fewer dead zones,
+   stronger visual hand-off from one memory to the next.
+   ========================================================= */
+@media (max-width:700px){
+  .story--memorybook{overflow:hidden;}
+  .memorybook{padding-top:18px;padding-bottom:0;}
+
+  /* Opening flows directly into the first memory. */
+  .memorybook__cover{
+    min-height:600px;
+    padding-bottom:20px;
+  }
+  .memorybook__hero-photo{top:215px;}
+  .memorybook__heart{top:430px;}
+
+  /* Every chapter is now a compact visual spread rather than a tall page. */
+  .memorybook__spread{
+    min-height:455px;
+    margin:0 10px 0;
+  }
+  .memorybook__spread:after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:2px;
+    width:42px;
+    height:1px;
+    transform:translateX(-50%) rotate(-3deg);
+    background:rgba(151,105,96,.22);
+  }
+
+  /* 01 — photo and paper overlap more deliberately. */
+  .memorybook__paper--01{left:8px;top:45px;width:56%;}
+  .memory-photo--polaroid{right:6px;top:0;width:53%;}
+
+  /* 02 — bring the copy up to meet the adventure photo. */
+  .memory-photo--landscape{left:3px;top:25px;width:69%;}
+  .memorybook__paper--02{right:4px;top:205px;width:45%;}
+  .memorybook__doodle--mountain{right:2px;bottom:34px;}
+
+  /* 03 — overlap instead of leaving a blank middle. */
+  .memorybook__paper--03{left:5px;top:48px;width:50%;}
+  .memory-photo--culture{right:2px;top:10px;width:57%;}
+  .memory-photo--small{left:12px;bottom:16px;width:35%;}
+
+  /* 04 — the note now bridges the two photos and the copy. */
+  .memory-photo--red{left:2px;top:30px;width:54%;}
+  .memorybook__paper--04{right:2px;top:190px;width:49%;}
+  .memory-photo--warm{right:7px;bottom:14px;width:40%;}
+  .memory-note--04{left:36%;top:370px;font-size:13px;padding:8px 10px;}
+
+  /* 05 — final memory hands off directly to the date. */
+  .memorybook__paper--05{left:4px;top:45px;width:49%;}
+  .memory-photo--final{right:1px;top:8px;width:58%;}
+  .memory-note--05{right:3%;top:300px;font-size:13px;padding:8px 10px;}
+
+  .memorybook__ending{
+    min-height:455px;
+    margin-top:-4px;
+    padding:0 16px 58px;
+  }
+  .memorybook__ending-copy{
+    transform:translateY(4px);
+  }
+  .memorybook__ending-date{font-size:30px;letter-spacing:.09em;}
+  .memorybook__ending-script{margin-top:16px;font-size:20px;}
+}
