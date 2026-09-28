@@ -20,6 +20,8 @@
     <div class="cover__flowers cover__flowers--right"></div>
 
     <div class="cover__card" id="openInvitation" role="button" tabindex="0" aria-label="Nhấn để mở thiệp">
+      <div class="cover__shine" aria-hidden="true"></div>
+      <div class="cover__seal" aria-hidden="true">♡</div>
       <div class="cover__arch"></div>
       <div class="cover__ornament">❦</div>
       <p class="cover__eyebrow">WEDDING INVITATION</p>
@@ -52,6 +54,7 @@
     <div class="hero__floral hero__floral--right"></div>
 
     <div class="hero__content">
+      <div class="hero__kicker">THE BEGINNING OF FOREVER</div>
       <p class="eyebrow">OUR STORY</p>
       <div class="mini-ornament">❦</div>
 
@@ -63,6 +66,7 @@
 
       <p class="hero__subtitle">WE ARE GETTING MARRIED</p>
       <div class="hero__year">2027</div>
+      <div class="hero__date-line">A NEW CHAPTER BEGINS</div>
 
       <a href="#story" class="scroll-cue">
         <span>SCROLL</span>
@@ -168,13 +172,14 @@
 
     function openWeddingInvitation(){
       if (cover.classList.contains('is-open')) return;
-      cover.classList.add('is-open');
+      cover.classList.add('is-opening');
       weddingPage.setAttribute('aria-hidden','false');
       document.body.classList.add('invitation-opened');
+      setTimeout(() => cover.classList.add('is-open'), 120);
       setTimeout(() => {
         cover.remove();
         window.scrollTo({top:0, behavior:'instant'});
-      }, 900);
+      }, 1250);
     }
 
     openInvitation.addEventListener('click', openWeddingInvitation);
