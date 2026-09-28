@@ -1870,55 +1870,81 @@ html, body{
    readable visual zone.
    ========================================================= */
 @media (max-width:700px){
-  /* CHAPTER 04
-     The lower-right photo was sitting underneath the 04 paper.
-     Move it down and slightly shrink it so the full photo remains visible. */
+  /* CHAPTER 03 — keep the small memory photo fully visible. */
+  .memorybook__spread--03{
+    min-height:360px !important;
+  }
+  .memorybook__spread--03 .memorybook__paper--03{
+    left:16px !important;
+    top:25px !important;
+    width:44% !important;
+    z-index:5 !important;
+  }
+  .memorybook__spread--03 .memory-photo--culture{
+    right:13px !important;
+    top:0 !important;
+    width:52% !important;
+    z-index:3 !important;
+  }
+  .memorybook__spread--03 .memory-photo--small{
+    left:auto !important;
+    right:18px !important;
+    bottom:8px !important;
+    width:29% !important;
+    z-index:4 !important;
+  }
+
+  /* CHAPTER 04 — clear visual hierarchy
+     09 = upper-left photo, 04 = lower-right paper, 10 = lower-right photo.
+     The two layers are deliberately separated so photo 10 is never swallowed. */
   .memorybook__spread--04{
-    min-height:345px !important;
+    min-height:430px !important;
   }
   .memorybook__spread--04 .memory-photo--red{
     left:12px !important;
     top:4px !important;
     width:47% !important;
+    z-index:3 !important;
   }
   .memorybook__spread--04 .memorybook__paper--04{
     right:12px !important;
-    top:92px !important;
-    width:43% !important;
+    top:150px !important;
+    width:41% !important;
     z-index:5 !important;
   }
   .memorybook__spread--04 .memory-photo--warm{
-    right:9px !important;
-    bottom:2px !important;
-    width:31% !important;
+    left:10px !important;
+    right:auto !important;
+    top:285px !important;
+    bottom:auto !important;
+    width:36% !important;
     z-index:4 !important;
   }
   .memorybook__spread--04 .memory-note--04{
-    left:34% !important;
-    top:270px !important;
+    left:32% !important;
+    top:330px !important;
     z-index:7 !important;
   }
 
-  /* CHAPTER 05
-     Keep the final portrait fully visible beside the paper. */
+  /* CHAPTER 05 — photo and paper occupy separate columns. */
   .memorybook__spread--05{
-    min-height:335px !important;
+    min-height:360px !important;
   }
   .memorybook__spread--05 .memorybook__paper--05{
     left:14px !important;
     top:34px !important;
-    width:43% !important;
+    width:42% !important;
     z-index:5 !important;
   }
   .memorybook__spread--05 .memory-photo--final{
-    right:10px !important;
-    top:0 !important;
+    right:9px !important;
+    top:20px !important;
     width:50% !important;
     z-index:4 !important;
   }
   .memorybook__spread--05 .memory-note--05{
     right:5% !important;
-    top:245px !important;
+    top:275px !important;
     z-index:7 !important;
   }
 }
