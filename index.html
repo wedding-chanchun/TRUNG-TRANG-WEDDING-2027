@@ -3,32 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f7e7e8">
+  <meta name="theme-color" content="#f8e7e5">
   <title>Thành Trung & Nhật Trang — Wedding 2027</title>
-  <meta name="description" content="Thiệp cưới online — Thành Trung & Nhật Trang — Wedding 2027">
+  <meta name="description" content="Thiệp cưới online — Thành Trung & Nhật Trang">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="petal-layer" aria-hidden="true"></div>
+  <div class="petals-fixed" aria-hidden="true"></div>
 
   <header class="hero" id="home">
-    <div class="hero__veil"></div>
-    <div class="hero__floral hero__floral--left" aria-hidden="true"></div>
-    <div class="hero__floral hero__floral--right" aria-hidden="true"></div>
+    <div class="hero__wash"></div>
+    <div class="hero__floral hero__floral--left"></div>
+    <div class="hero__floral hero__floral--right"></div>
 
     <div class="hero__content">
-      <div class="eyebrow">OUR STORY</div>
-      <div class="ornament">❦</div>
+      <p class="eyebrow">OUR STORY</p>
+      <div class="mini-ornament">❦</div>
+
       <h1>
         <span>THÀNH TRUNG</span>
-        <i>&amp;</i>
+        <em>&amp;</em>
         <span>NHẬT TRANG</span>
       </h1>
+
       <p class="hero__subtitle">WE ARE GETTING MARRIED</p>
       <div class="hero__year">2027</div>
 
-      <a class="scroll-cue" href="#story" aria-label="Cuộn xuống">
+      <a href="#story" class="scroll-cue">
         <span>SCROLL</span>
         <b>↓</b>
       </a>
@@ -36,91 +41,102 @@
   </header>
 
   <main>
-    <section class="story section section--soft" id="story">
-      <div class="decor decor--left"></div>
-      <div class="decor decor--right"></div>
+    <section class="story section" id="story">
+      <div class="corner corner--left"></div>
+      <div class="corner corner--right"></div>
 
-      <div class="container story__content">
+      <div class="story__inner">
         <p class="eyebrow">OUR STORY</p>
-        <img class="divider" src="assets/images/divider.png" alt="" aria-hidden="true">
-        <h2>Một câu chuyện nhỏ<br> dẫn đến một ngày lớn.</h2>
-        <p class="lead">
-          Hai người, hai hành trình, và một ngày chúng ta quyết định
-          bước tiếp cùng nhau.
+        <img class="divider" src="assets/images/divider.png" alt="">
+        <h2>Một câu chuyện nhỏ</h2>
+        <div class="script-title">dẫn đến một ngày lớn.</div>
+        <p class="story__text">
+          Hai người, hai hành trình,<br>
+          và một ngày chúng ta quyết định bước tiếp cùng nhau.
         </p>
-        <p class="story__signature">THÀNH TRUNG <span>&amp;</span> NHẬT TRANG</p>
       </div>
     </section>
 
     <section class="save-date section" id="save-date">
-      <div class="save-date__overlay"></div>
-      <div class="container save-date__content">
-        <p class="eyebrow eyebrow--light">SAVE THE DATE</p>
+      <div class="section-bg"></div>
+      <div class="section-shade"></div>
+
+      <div class="save-date__inner">
+        <p class="eyebrow light">SAVE THE DATE</p>
         <h2>2027</h2>
-        <p class="save-date__note">NGÀY CƯỚI SẼ ĐƯỢC CẬP NHẬT</p>
+        <img class="divider divider--light" src="assets/images/divider.png" alt="">
+        <p class="update-note">NGÀY CƯỚI SẼ ĐƯỢC CẬP NHẬT</p>
 
         <div class="date-grid">
-          <div class="date-card">
-            <span class="date-card__label">01</span>
-            <span class="date-card__title">LỄ CƯỚI</span>
-            <span class="date-card__value">THỜI GIAN SẼ ĐƯỢC CẬP NHẬT</span>
-          </div>
-          <div class="date-card">
-            <span class="date-card__label">02</span>
-            <span class="date-card__title">TIỆC CƯỚI</span>
-            <span class="date-card__value">THỜI GIAN SẼ ĐƯỢC CẬP NHẬT</span>
-          </div>
+          <article>
+            <span>01</span>
+            <strong>LỄ CƯỚI</strong>
+            <small>THỜI GIAN SẼ ĐƯỢC CẬP NHẬT</small>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>TIỆC CƯỚI</strong>
+            <small>THỜI GIAN SẼ ĐƯỢC CẬP NHẬT</small>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="location section section--location" id="location">
-      <div class="location__image"></div>
-      <div class="container location__content">
+    <section class="location section" id="location">
+      <div class="location__bg"></div>
+      <div class="location__veil"></div>
+      <div class="location__content">
         <p class="eyebrow">LOCATION</p>
         <h2>Địa điểm</h2>
         <p>Thông tin địa điểm sẽ được cập nhật.</p>
-        <button class="outline-button" type="button" disabled>📍 BẢN ĐỒ — SẼ CẬP NHẬT</button>
+        <button class="soft-button" disabled>📍 BẢN ĐỒ — SẼ CẬP NHẬT</button>
       </div>
     </section>
 
     <section class="venue section" id="venue">
-      <div class="container venue__content">
+      <div class="venue__intro">
         <p class="eyebrow">WEDDING DAY</p>
-        <h2>Một ngày thật đẹp</h2>
-        <p class="lead">Nơi câu chuyện của chúng ta được viết tiếp cùng những người thân yêu.</p>
+        <h2>Một ngày</h2>
+        <div class="script-title rose">thật đẹp</div>
+        <div class="small-ornament">♡</div>
+        <p>
+          Nơi câu chuyện của chúng ta được viết tiếp<br>
+          cùng những người thân yêu.
+        </p>
       </div>
-      <div class="venue__image"></div>
+      <div class="venue__photo"></div>
     </section>
 
     <section class="rsvp section" id="rsvp">
-      <div class="rsvp__overlay"></div>
-      <div class="container rsvp__content">
+      <div class="rsvp__bg"></div>
+      <div class="rsvp__shade"></div>
+      <div class="rsvp__content">
         <p class="eyebrow">RSVP</p>
-        <h2>Bạn sẽ đến chứ?</h2>
-        <p>Chúng tôi rất mong được đón bạn trong ngày đặc biệt này.</p>
-        <button class="primary-button" type="button" disabled>
-          XÁC NHẬN THAM DỰ
-        </button>
+        <h2>Bạn sẽ</h2>
+        <div class="script-title rose">đến chứ?</div>
+        <p>Chúng tôi rất mong được đón bạn<br>trong ngày đặc biệt này.</p>
+        <button class="rsvp-button" disabled>XÁC NHẬN THAM DỰ <span>→</span></button>
         <small>RSVP sẽ được mở khi thông tin ngày cưới được cập nhật.</small>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer__arch"></div>
-    <p class="eyebrow">WITH LOVE</p>
-    <h2>THÀNH TRUNG <span>&amp;</span> NHẬT TRANG</h2>
-    <p>WEDDING 2027</p>
+    <div class="footer__bg"></div>
+    <div class="footer__content">
+      <p class="eyebrow">WITH LOVE</p>
+      <h2>THÀNH TRUNG <span>&amp;</span> NHẬT TRANG</h2>
+      <p class="footer__year">WEDDING 2027</p>
+    </div>
   </footer>
 
   <script>
     document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', event => {
+      link.addEventListener('click', e => {
         const target = document.querySelector(link.getAttribute('href'));
         if (!target) return;
-        event.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth'});
       });
     });
   </script>
