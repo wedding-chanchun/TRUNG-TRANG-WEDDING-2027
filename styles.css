@@ -1745,3 +1745,120 @@ html, body{
     padding:0 14px 54px;
   }
 }
+
+/* =========================================================
+   V3.0 — MOBILE CANVAS / HERO / CONTINUOUS FLOW FINAL FIX
+   ========================================================= */
+@media (max-width:700px){
+  html, body{
+    width:100vw !important;
+    max-width:100vw !important;
+    min-width:100vw !important;
+    overflow-x:hidden !important;
+  }
+
+  #weddingPage,
+  #weddingPage > main,
+  #weddingPage > footer,
+  #weddingPage .section,
+  #weddingPage .hero,
+  #weddingPage .story--memorybook{
+    width:100vw !important;
+    max-width:100vw !important;
+    min-width:0 !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  /* Hero: names stay on one clean line, with enough breathing room. */
+  .hero__content{
+    width:100vw !important;
+    max-width:100vw !important;
+    padding-left:10px !important;
+    padding-right:10px !important;
+  }
+  .hero h1{
+    width:100% !important;
+    font-size:clamp(36px,10.2vw,48px) !important;
+    line-height:.94 !important;
+    letter-spacing:.01em !important;
+    margin:10px 0 13px !important;
+  }
+  .hero h1 span{
+    display:block !important;
+    white-space:nowrap !important;
+    word-break:keep-all !important;
+    overflow:visible !important;
+  }
+  .hero h1 em{
+    margin:8px 0 6px !important;
+    font-size:clamp(32px,8vw,40px) !important;
+    line-height:.78 !important;
+  }
+  .hero__subtitle{
+    margin-top:20px !important;
+    font-size:8px !important;
+    letter-spacing:.22em !important;
+  }
+  .hero__year{font-size:29px !important;letter-spacing:.15em !important;}
+  .hero__date-line{font-size:6.5px !important;letter-spacing:.2em !important;}
+
+  /* The memory book is one continuous canvas, not five separate pages. */
+  .memorybook{
+    width:100vw !important;
+    max-width:100vw !important;
+    padding-top:8px !important;
+  }
+  .memorybook__cover{
+    min-height:555px !important;
+    padding:28px 18px 10px !important;
+  }
+  .memorybook__cover-copy{width:66% !important;}
+  .memorybook__cover h2{
+    font-size:62px !important;
+    line-height:.76 !important;
+  }
+  .memorybook__intro-script{font-size:18px !important;}
+  .memorybook__hero-photo{
+    top:195px !important;
+    right:8px !important;
+    width:66% !important;
+  }
+  .memorybook__heart{top:400px !important;}
+
+  /* Tighten the rhythm: each spread starts before the previous one feels finished. */
+  .memorybook__spread{
+    min-height:315px !important;
+    margin:0 !important;
+  }
+  .memorybook__spread--01{margin-top:-8px !important;}
+  .memorybook__spread--02{margin-top:-4px !important;}
+  .memorybook__spread--03{margin-top:-2px !important;}
+  .memorybook__spread--04{margin-top:-4px !important;}
+  .memorybook__spread--05{margin-top:-6px !important;}
+
+  .memorybook__paper--01{left:18px !important;top:35px !important;width:50% !important;}
+  .memory-photo--polaroid{right:12px !important;top:0 !important;width:50% !important;}
+
+  .memory-photo--landscape{left:14px !important;top:8px !important;width:62% !important;}
+  .memorybook__paper--02{right:14px !important;top:132px !important;width:40% !important;}
+
+  .memorybook__paper--03{left:16px !important;top:25px !important;width:44% !important;}
+  .memory-photo--culture{right:13px !important;top:0 !important;width:52% !important;}
+  .memory-photo--small{left:18px !important;bottom:0 !important;width:30% !important;}
+
+  .memory-photo--red{left:14px !important;top:4px !important;width:49% !important;}
+  .memorybook__paper--04{right:14px !important;top:112px !important;width:43% !important;}
+  .memory-photo--warm{right:15px !important;bottom:0 !important;width:35% !important;}
+  .memory-note--04{left:34% !important;top:238px !important;font-size:11px !important;}
+
+  .memorybook__paper--05{left:16px !important;top:22px !important;width:43% !important;}
+  .memory-photo--final{right:13px !important;top:0 !important;width:53% !important;}
+  .memory-note--05{right:5% !important;top:225px !important;font-size:11px !important;}
+
+  .memorybook__ending{
+    min-height:355px !important;
+    margin-top:-10px !important;
+    padding:0 14px 45px !important;
+  }
+}
