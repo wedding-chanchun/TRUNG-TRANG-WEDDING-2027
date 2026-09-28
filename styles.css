@@ -871,3 +871,192 @@ h2{
   .hero__content .scroll-cue,
   .hero__content .mini-ornament{animation:none!important}
 }
+
+
+/* =========================================================
+   V2.4 — BALANCED EDITORIAL INVITATION
+   Fix: names overflowing + cover too plain.
+   Keep the modern card; add botanical depth without a full arch.
+   ========================================================= */
+.cover__flowers--left{
+  left:-58px;
+  top:-28px;
+  width:250px;
+  height:270px;
+  background-image:url("assets/images/floral-corner-left.png");
+  background-position:left top;
+  opacity:.78;
+}
+.cover__flowers--right{
+  right:-58px;
+  top:-28px;
+  width:250px;
+  height:270px;
+  background-image:url("assets/images/floral-corner-right.png");
+  background-position:right top;
+  opacity:.74;
+}
+.cover__flowers--bottom-left{
+  left:-52px;
+  bottom:-32px;
+  width:245px;
+  height:255px;
+  background-image:url("assets/images/floral-bottom-left.png");
+  background-position:left bottom;
+  opacity:.72;
+}
+.cover__flowers--bottom-right{
+  right:-52px;
+  bottom:-32px;
+  width:245px;
+  height:255px;
+  background-image:url("assets/images/floral-bottom-right.png");
+  background-position:right bottom;
+  opacity:.76;
+}
+
+.cover__card{
+  width:min(92vw,570px);
+  height:min(680px,calc(100svh - 105px));
+  min-height:560px;
+  padding:58px 32px 48px;
+  background:
+    radial-gradient(circle at 50% 38%,rgba(255,255,255,.98),rgba(255,250,247,.96) 46%,rgba(255,244,241,.94) 100%);
+  border-radius:26px;
+  box-shadow:0 25px 75px rgba(100,62,61,.16), inset 0 1px 0 rgba(255,255,255,.9);
+}
+.cover__card:before{
+  inset:18px;
+  border-color:rgba(168,111,108,.18);
+  border-radius:19px;
+}
+.cover__card:after{
+  top:18px;
+  width:86px;
+  background:linear-gradient(90deg,transparent,rgba(183,110,115,.55),transparent);
+}
+.cover__ornament{
+  font-size:28px;
+  margin-bottom:18px;
+}
+.cover__eyebrow{margin-bottom:15px;letter-spacing:.37em}
+.cover__small{margin-bottom:36px;letter-spacing:.22em}
+
+/* The names are the hero of the card, but must stay inside the sheet. */
+.cover__card h1.cover__names{
+  width:100%;
+  max-width:100%;
+  font-size:clamp(31px,8.8vw,52px);
+  line-height:1;
+  letter-spacing:.025em;
+}
+.cover__name{
+  width:100%;
+  max-width:100%;
+  white-space:nowrap;
+  text-align:center;
+  overflow:hidden;
+  text-overflow:clip;
+}
+.cover__name--trung{margin-bottom:30px}
+.cover__name--trang{margin-top:28px}
+.cover__card h1 .cover__amp{
+  font-size:42px;
+  line-height:.6;
+  margin:0;
+}
+.cover__line{
+  width:82px;
+  margin:36px 0 18px;
+}
+.cover__year{
+  font-size:24px;
+  letter-spacing:.38em;
+  padding-left:.38em;
+}
+.cover__button{
+  margin-top:43px;
+  min-width:166px;
+  padding:14px 23px;
+  font-size:9px;
+}
+.cover__hint{margin-top:15px}
+
+/* subtle editorial ornament behind the names */
+.cover__card .cover__shine{
+  position:absolute;
+  inset:20% 10% 24%;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 42%,rgba(244,217,214,.22),transparent 58%),
+    radial-gradient(ellipse at 50% 78%,rgba(199,154,103,.07),transparent 50%);
+  opacity:1;
+}
+.cover__seal{
+  position:absolute;
+  right:25px;
+  top:25px;
+  z-index:4;
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(184,95,103,.25);
+  border-radius:50%;
+  color:rgba(184,95,103,.75);
+  font:400 16px var(--serif);
+  background:rgba(255,250,247,.72);
+}
+
+@media(max-width:700px){
+  .cover__flowers--left,
+  .cover__flowers--right{
+    width:185px;
+    height:200px;
+    opacity:.70;
+  }
+  .cover__flowers--left{left:-38px;top:-14px}
+  .cover__flowers--right{right:-38px;top:-14px}
+  .cover__flowers--bottom-left,
+  .cover__flowers--bottom-right{
+    width:180px;
+    height:195px;
+    opacity:.68;
+  }
+  .cover__flowers--bottom-left{left:-38px;bottom:-22px}
+  .cover__flowers--bottom-right{right:-38px;bottom:-22px}
+
+  .cover__card{
+    width:88vw;
+    height:min(650px,calc(100svh - 112px));
+    min-height:525px;
+    padding:50px 18px 42px;
+    border-radius:24px;
+  }
+  .cover__card:before{inset:15px;border-radius:17px}
+  .cover__card:after{top:15px;width:68px}
+  .cover__seal{right:23px;top:23px;width:29px;height:29px;font-size:14px}
+  .cover__ornament{font-size:25px;margin-bottom:15px}
+  .cover__eyebrow{font-size:8px;letter-spacing:.28em}
+  .cover__small{font-size:8px;letter-spacing:.16em;margin-bottom:31px}
+  .cover__card h1.cover__names{
+    font-size:clamp(30px,8.4vw,35px);
+    letter-spacing:.018em;
+  }
+  .cover__name--trung{margin-bottom:29px}
+  .cover__name--trang{margin-top:27px}
+  .cover__card h1 .cover__amp{font-size:39px}
+  .cover__line{margin-top:32px;width:72px}
+  .cover__year{font-size:22px;letter-spacing:.34em;padding-left:.34em}
+  .cover__button{margin-top:38px;min-width:158px}
+}
+
+@media(max-height:720px) and (max-width:700px){
+  .cover__card{height:calc(100svh - 92px);min-height:500px;padding-top:38px;padding-bottom:30px}
+  .cover__small{margin-bottom:24px}
+  .cover__name--trung{margin-bottom:22px}
+  .cover__name--trang{margin-top:21px}
+  .cover__line{margin-top:25px}
+  .cover__button{margin-top:30px}
+}
