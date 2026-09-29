@@ -403,7 +403,8 @@
   import {
     getFirestore,
     collection,
-    addDoc,
+    writeBatch,
+    doc,
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -460,13 +461,30 @@
           submitButton.innerHTML = "ĐANG GỬI... <span>♡</span>";
         }
 
-        await addDoc(collection(db, "wedding_rsvp"), {
+        // Lưu 2 bản ghi:
+        // 1) wedding_rsvp: dữ liệu RSVP đầy đủ, KHÔNG public read
+        // 2) wedding_wishes: chỉ tên + lời chúc, dùng cho màn hình trình chiếu
+        const batch = writeBatch(db);
+
+        const rsvpRef = doc(collection(db, "wedding_rsvp"));
+        const wishRef = doc(collection(db, "wedding_wishes"));
+
+        batch.set(rsvpRef, {
           name,
           guests,
           attendance,
           message,
           createdAt: serverTimestamp()
         });
+
+        // Chỉ đưa dữ liệu cần trình chiếu lên màn hình.
+        batch.set(wishRef, {
+          name,
+          message,
+          createdAt: serverTimestamp()
+        });
+
+        await batch.commit();
 
         form.hidden = true;
         success.hidden = false;
