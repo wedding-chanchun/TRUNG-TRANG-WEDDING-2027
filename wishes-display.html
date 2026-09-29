@@ -534,7 +534,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD8Q_J2p6U6at2HeWfdc6bqEh04AfoDy0Q",
+  apiKey: "AIzaSyD8Q_J2p6U6at2HeWfdc6bqEhO4AfoDy0Q",
   authDomain: "trung-trang-wedding-2027.firebaseapp.com",
   projectId: "trung-trang-wedding-2027",
   storageBucket: "trung-trang-wedding-2027.firebasestorage.app",
@@ -659,15 +659,23 @@ function startInitialSlideshow() {
   }, DISPLAY_MS);
 }
 
+// Chỉ lọc theo approved ở Firestore để tránh phải tạo composite index.
+// Sau đó sắp xếp và lấy 100 lời mới nhất ở phía trình duyệt.
 const wishesQuery = query(
   collection(db, "wedding_wishes"),
-  where("approved", "==", true),
-  orderBy("createdAt", "desc"),
-  limit(MAX_DISPLAY_WISHES)
+  where("approved", "==", true)
 );
 
 onSnapshot(wishesQuery, snapshot => {
-  const incoming = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  const incomingAll = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  const incoming = incomingAll
+    .slice()
+    .sort((a, b) => {
+      const ta = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+      const tb = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+      return tb - ta;
+    })
+    .slice(0, MAX_DISPLAY_WISHES);
 
   if (!slideshowStarted) {
     wishes = incoming;
@@ -688,7 +696,11 @@ onSnapshot(wishesQuery, snapshot => {
 }, error => {
   console.error("Wishes display error:", error);
   messageEl.textContent = "Chưa thể tải lời chúc.";
-  fromEl.textContent = "Vui lòng kiểm tra kết nối Firebase.";
+  if (error?.code === "permission-denied") {
+    fromEl.textContent = "Firestore Rules chưa cho phép màn hình đọc lời đã duyệt.";
+  } else {
+    fromEl.textContent = "Vui lòng kiểm tra kết nối Firebase.";
+  }
 });
 </script>
 </body>
