@@ -560,7 +560,7 @@ let timer = null;
 let progressTimer = null;
 let slideshowStarted = false;
 
-const DISPLAY_MS = 7000;
+const DISPLAY_MS = 7000; // Mỗi lời chúc hiển thị 7 giây
 const MAX_DISPLAY_WISHES = 100;
 
 /*
@@ -626,19 +626,15 @@ function buildInitialQueue(allWishes) {
   return sortByCreatedAtAsc(selected);
 }
 
-function startInitialSlideshow() {
-  if (!displayQueue.length) {
-    showWish(0);
-    return;
-  }
+function scheduleNextWish() {
+  clearTimeout(timer);
 
-  clearInterval(timer);
-  currentIndex = 0;
-  slideshowStarted = true;
-  showWish(currentIndex);
-
-  timer = setInterval(() => {
-    if (!displayQueue.length) return;
+  timer = setTimeout(() => {
+    if (!displayQueue.length) {
+      showWish(0);
+      scheduleNextWish();
+      return;
+    }
 
     currentIndex += 1;
 
@@ -648,6 +644,7 @@ function startInitialSlideshow() {
         const freshIds = new Set(fresh.map(w => w.id));
         const old = displayQueue.filter(w => !freshIds.has(w.id));
 
+        // Always keep fresh approved wishes at the front of the next cycle.
         displayQueue = [...fresh, ...old].slice(0, MAX_DISPLAY_WISHES);
         pendingNew = [];
       }
@@ -656,7 +653,21 @@ function startInitialSlideshow() {
     }
 
     showWish(currentIndex);
+    scheduleNextWish();
   }, DISPLAY_MS);
+}
+
+function startInitialSlideshow() {
+  if (!displayQueue.length) {
+    showWish(0);
+    return;
+  }
+
+  clearTimeout(timer);
+  currentIndex = 0;
+  slideshowStarted = true;
+  showWish(currentIndex);
+  scheduleNextWish();
 }
 
 // Chỉ lọc theo approved ở Firestore để tránh phải tạo composite index.
