@@ -690,6 +690,85 @@ body{
   .wedding-book__wish{width:92%;height:64%;padding:26px 28px 20px}
   .wedding-book__floral{opacity:.16}
 }
+
+/* ===== SUNFLOWER WEDDING GUESTBOOK — visual layer only ===== */
+.wedding-book__page{
+  background:
+    linear-gradient(rgba(255,248,242,.06),rgba(255,248,242,.06)),
+    url("assets/images/wedding-guestbook-sunflower-bg.jpg") center center / cover no-repeat;
+  border:1px solid rgba(135,91,64,.12);
+}
+.wedding-book__frame{border-color:rgba(255,255,255,.62)}
+.wedding-book__heading,
+.wedding-book__ornament,
+.wedding-book__floral,
+.wedding-book__note{display:none !important}
+.wedding-book__wish-area{
+  left:20%;right:20%;top:35%;bottom:24%;
+}
+.wedding-book__wish{
+  width:min(760px,92%);
+  height:min(330px,78%);
+  min-height:220px;
+  padding:34px 58px 26px;
+  border:1px solid rgba(178,128,73,.30);
+  border-radius:22px;
+  background:rgba(255,250,244,.91);
+  box-shadow:0 18px 50px rgba(83,53,40,.14),inset 0 1px rgba(255,255,255,.95);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+.wedding-book__wish:before,
+.wedding-book__wish:after{
+  content:"✿";
+  position:absolute;
+  color:rgba(221,166,52,.72);
+  font-size:26px;
+  pointer-events:none;
+}
+.wedding-book__wish:before{left:20px;top:18px}
+.wedding-book__wish:after{right:20px;bottom:18px}
+.wedding-book__wish .message{
+  color:#4a3630;
+  font-size:clamp(30px,4vw,58px);
+  line-height:1.12;
+  max-height:100%;
+}
+.wedding-book__wish .from{
+  color:#8d6857;
+  margin-top:18px;
+}
+.wedding-book__heart{
+  bottom:10.5%;
+  color:#b87962;
+}
+.wedding-book__date{
+  bottom:5.8%;
+  width:max-content;
+  left:50%;right:auto;
+  transform:translateX(-50%);
+  padding:6px 15px;
+  border-radius:999px;
+  background:rgba(255,248,240,.88);
+  color:#8c6b5f;
+  box-shadow:0 4px 14px rgba(76,48,39,.06);
+}
+.wedding-book__progress{
+  left:28%;right:28%;bottom:2.7%;
+  background:rgba(255,255,255,.42);
+}
+.wedding-book__progress i{background:rgba(184,128,48,.72)}
+
+@media (orientation:landscape){
+  .wedding-book{width:92vw;height:74vh;max-width:1500px}
+  .wedding-book__wish-area{left:19%;right:19%;top:34%;bottom:23%}
+  .wedding-book__wish{width:min(760px,88%);height:min(330px,74%)}
+}
+@media (orientation:portrait){
+  .wedding-book{width:94vw;height:70vh}
+  .wedding-book__wish-area{left:8%;right:8%;top:34%;bottom:21%}
+  .wedding-book__wish{width:92%;height:62%;padding:26px 28px 20px}
+}
 </style>
 </head>
 <body>
