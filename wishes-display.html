@@ -965,13 +965,6 @@ onSnapshot(wishesQuery, snapshot => {
     );
   }
 });
-  messageEl.textContent = "Chưa thể tải lời chúc.";
-  if (error?.code === "permission-denied") {
-    fromEl.textContent = "Firestore Rules chưa cho phép màn hình đọc lời đã duyệt.";
-  } else {
-    fromEl.textContent = "Vui lòng kiểm tra kết nối Firebase.";
-  }
-});
 </script>
 </body>
 </html>
