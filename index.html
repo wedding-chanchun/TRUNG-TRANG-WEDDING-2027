@@ -398,12 +398,92 @@
   </script>
   </div>
 
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
- const form=document.getElementById("rsvpForm"), success=document.getElementById("rsvpSuccess");
- if(!form||!success)return;
- form.addEventListener("submit",e=>{e.preventDefault(); form.hidden=true; success.hidden=false; success.scrollIntoView({behavior:"smooth",block:"center"});});
-});
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+  // FIREBASE — Thành Trung & Nhật Trang Wedding 2027
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8Q_J2p6U6at2HeWfdc6bqEh04AfoDy0Q",
+    authDomain: "trung-trang-wedding-2027.firebaseapp.com",
+    projectId: "trung-trang-wedding-2027",
+    storageBucket: "trung-trang-wedding-2027.firebasestorage.app",
+    messagingSenderId: "594388235466",
+    appId: "1:594388235466:web:a10a124d5f07ef8f423033"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("rsvpForm");
+    const success = document.getElementById("rsvpSuccess");
+
+    if (!form || !success) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton ? submitButton.innerHTML : "";
+
+      const formData = new FormData(form);
+
+      const name = String(formData.get("name") || "").trim();
+      const guests = Number.parseInt(String(formData.get("guests") || "1"), 10);
+      const attendance = String(formData.get("attendance") || "");
+      const message = String(formData.get("message") || "").trim();
+
+      if (!name || !Number.isInteger(guests) || guests < 1 || guests > 10) {
+        alert("Vui lòng kiểm tra họ tên và số người tham dự.");
+        return;
+      }
+
+      if (attendance !== "yes" && attendance !== "no") {
+        alert("Vui lòng chọn xác nhận tham dự.");
+        return;
+      }
+
+      if (message.length > 1000) {
+        alert("Lời chúc không được vượt quá 1000 ký tự.");
+        return;
+      }
+
+      try {
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.innerHTML = "ĐANG GỬI... <span>♡</span>";
+        }
+
+        await addDoc(collection(db, "wedding_rsvp"), {
+          name,
+          guests,
+          attendance,
+          message,
+          createdAt: serverTimestamp()
+        });
+
+        form.hidden = true;
+        success.hidden = false;
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      } catch (error) {
+        console.error("RSVP Firebase error:", error);
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText;
+        }
+
+        alert("Chưa thể gửi xác nhận lúc này. Vui lòng kiểm tra kết nối mạng và thử lại.");
+      }
+    });
+  });
 </script>
 </body>
 </html>
