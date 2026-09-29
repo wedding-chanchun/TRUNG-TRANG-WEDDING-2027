@@ -1961,12 +1961,6 @@ html, body{
   width:min(760px,92%);
   padding:92px 18px 84px;
 }
-.save-date__pretitle{
-  margin:16px 0 10px;
-  color:#8d5a5d;
-  font:500 9px/1.4 var(--sans);
-  letter-spacing:.34em;
-}
 .save-date__date{
   display:flex;
   align-items:baseline;
@@ -2053,7 +2047,6 @@ html, body{
 @media(max-width:700px){
   .save-date{min-height:680px}
   .save-date__inner{width:94%;padding:82px 10px 72px}
-  .save-date__pretitle{margin-top:13px;font-size:8px;letter-spacing:.28em}
   .save-date__date{gap:5px}
   .save-date__day,.save-date__month{font-size:58px}
   .save-date__year{font-size:39px}
@@ -2067,4 +2060,28 @@ html, body{
   .save-date .date-grid strong{font-size:13px;letter-spacing:.12em}
   .save-date .date-grid small{font-size:9px;letter-spacing:.1em}
   .save-date__petal{width:190px;height:190px;opacity:.28}
+}
+
+
+/* SAVE THE DATE — V3.3.2 readability refinement */
+.save-date__line{
+  position:relative;
+  display:inline-block;
+  margin:0 0 32px;
+  padding:7px 18px 8px;
+  color:#6f4147;
+  font:500 21px/1.25 var(--script);
+  letter-spacing:.01em;
+  text-shadow:0 1px 0 rgba(255,255,255,.78), 0 2px 10px rgba(112,69,70,.16);
+  background:rgba(255,248,246,.30);
+  border-radius:999px;
+  box-shadow:0 4px 18px rgba(112,69,70,.06);
+}
+@media (max-width:700px){
+  .save-date__line{
+    font-size:19px;
+    padding:7px 16px 8px;
+    background:rgba(255,248,246,.38);
+    text-shadow:0 1px 0 rgba(255,255,255,.88), 0 2px 9px rgba(112,69,70,.18);
+  }
 }
