@@ -505,7 +505,6 @@ body{
 }
 .kiosk-bar[hidden]{display:none}
 #kioskLiveDot{width:6px;height:6px;border-radius:50%;background:#587665;box-shadow:0 0 0 3px rgba(88,118,101,.12)}
-#dataStatus{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .kiosk-sep{opacity:.35}
 .kiosk-bar button{border:0;background:transparent;color:#92757c;font:600 8px "Montserrat";cursor:pointer;letter-spacing:.08em}
 @media(max-width:700px){
@@ -534,7 +533,7 @@ body{
       <div class="iphone__screen">
         <div class="island"></div>
         <div class="iphone__status">
-          <span>12:27</span>
+          <span></span>
           <span>♡</span>
         </div>
 
@@ -573,7 +572,7 @@ body{
   </div>
   <div class="progress"><i id="progress"></i></div>
   <div id="kioskPanel" class="kiosk-panel">
-    <div class="kiosk-panel__eyebrow">WEDDING DISPLAY · TRUNG × TRANG · V8.5</div>
+    <div class="kiosk-panel__eyebrow">DIGITAL GUESTBOOK · TRUNG × TRANG</div>
     <div class="kiosk-panel__title">Sẵn sàng trình chiếu</div>
     <div class="kiosk-panel__text">
       Bấm bắt đầu một lần. Màn hình sẽ chạy lời chúc tự động và cố gắng giữ màn hình luôn sáng.
@@ -587,9 +586,7 @@ body{
   <div id="kioskBar" class="kiosk-bar" hidden>
     <span id="kioskLiveDot"></span>
     <span id="kioskLiveText">ĐANG TRÌNH CHIẾU</span>
-    <span id="wishCount"></span>
-    <span class="kiosk-sep">·</span>
-    <span id="dataStatus">ĐANG KẾT NỐI</span>
+
     <span class="kiosk-sep">·</span>
     <span id="wakeStatus">ĐANG KIỂM TRA MÀN HÌNH</span>
     <button id="exitKiosk" type="button">THOÁT</button>
@@ -797,16 +794,9 @@ const wakeButton = document.getElementById("wakeButton");
 const exitKiosk = document.getElementById("exitKiosk");
 const wakeStatus = document.getElementById("wakeStatus");
 const kioskHint = document.getElementById("kioskHint");
-const wishCount = document.getElementById("wishCount");
-const dataStatus = document.getElementById("dataStatus");
 
 let kioskStarted = false;
 
-function setDataStatus(text, tone = "normal"){
-  if (!dataStatus) return;
-  dataStatus.textContent = text;
-  dataStatus.dataset.tone = tone;
-}
 
 function showWaitingState(message){
   messageEl.textContent = message;
@@ -916,8 +906,6 @@ const wishesQuery = query(
   where("approved", "==", true)
 );
 
-setDataStatus("ĐANG KẾT NỐI");
-
 onSnapshot(wishesQuery, snapshot => {
   try {
     const incomingAll = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -931,15 +919,11 @@ onSnapshot(wishesQuery, snapshot => {
     })
     .slice(0, MAX_DISPLAY_WISHES);
 
-  if (wishCount) wishCount.textContent = `· ${incoming.length} LỜI`;
-
   if (!incoming.length) {
-    setDataStatus("CHƯA CÓ LỜI ĐÃ DUYỆT");
     if (!slideshowStarted) {
       showWaitingState("Chưa có lời chúc được duyệt...");
     }
   } else {
-    setDataStatus(`ĐÃ TẢI ${incoming.length} LỜI`);
   }
 
   if (!slideshowStarted) {
@@ -970,21 +954,11 @@ onSnapshot(wishesQuery, snapshot => {
     wishes = incoming;
   } catch (err) {
     console.error("Wishes snapshot runtime error:", err);
-    if (wishCount) wishCount.textContent = "";
     const runtimeLabel = err?.name ? `${err.name}` : "RUNTIME ERROR";
-    setDataStatus(runtimeLabel, "error");
     showWaitingState("Không thể xử lý danh sách lời chúc.");
   }
 }, error => {
   console.error("Wishes display error:", error);
-
-  if (wishCount) wishCount.textContent = "";
-  setDataStatus(
-    error?.code === "permission-denied"
-      ? "FIRESTORE: BỊ TỪ CHỐI"
-      : "FIRESTORE: LỖI KẾT NỐI",
-    "error"
-  );
 
   if (!slideshowStarted) {
     showWaitingState(
