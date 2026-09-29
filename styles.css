@@ -2224,3 +2224,46 @@ html, body{
   .location__address{font-size:15px}
 }
 
+
+/* =========================
+   OPENING LOADER — V3.4.1
+   Gives the first screen a short, useful loading moment while key images preload.
+   ========================= */
+.cover__button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-width:158px;
+}
+.cover__button-label{display:inline-block}
+.cover__button-spinner{
+  display:none;
+  width:13px;
+  height:13px;
+  border:1.5px solid rgba(255,255,255,.42);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:coverSpinner .72s linear infinite;
+}
+.cover__button-heart{font-size:14px;line-height:1}
+.cover__card.is-loading .cover__button{
+  background:rgba(165,78,88,.92);
+  box-shadow:0 10px 28px rgba(137,65,70,.20);
+}
+.cover__card.is-loading .cover__button-label::after{
+  content:'  ĐANG MỞ...';
+}
+.cover__card.is-loading .cover__button-label{font-size:0}
+.cover__card.is-loading .cover__button-spinner{display:inline-block}
+.cover__card.is-loading .cover__button-heart{opacity:.65}
+.cover__card.is-loading .cover__hint::after{
+  content:'ĐANG CHUẨN BỊ KHÔNG GIAN';
+}
+.cover__card.is-loading .cover__hint{font-size:0}
+.cover__card.is-loading .cover__hint::after{font-size:8px}
+@keyframes coverSpinner{to{transform:rotate(360deg)}}
+
+@media(max-width:700px){
+  .cover__button-spinner{width:12px;height:12px}
+}
