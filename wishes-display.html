@@ -520,6 +520,18 @@ body{
 @media (orientation:landscape){
   .floral--br{display:none !important}
 }
+
+/* KIOSK interaction safety */
+.kiosk-panel{pointer-events:auto !important;isolation:isolate}
+.kiosk-panel *{pointer-events:auto}
+.kiosk-primary,.kiosk-secondary{position:relative;z-index:3;pointer-events:auto !important;touch-action:manipulation}
+.floral,.floral-corner,.floral-bottom,.floral--br,[class*="floral"]{pointer-events:none !important}
+
+/* Definitive iPad touch fallback */
+#kioskPanel{z-index:2147483000 !important;pointer-events:auto !important}
+#kioskPanel .kiosk-panel__actions,
+#kioskPanel .kiosk-primary,
+#kioskPanel .kiosk-secondary{pointer-events:auto !important}
 </style>
 </head>
 <body>
@@ -587,7 +599,7 @@ body{
       Bấm bắt đầu một lần. Màn hình sẽ chạy lời chúc tự động và cố gắng giữ màn hình luôn sáng.
     </div>
     <div class="kiosk-panel__actions">
-      <button id="startKiosk" class="kiosk-primary" type="button">BẮT ĐẦU TRÌNH CHIẾU</button>
+      <button id="startKiosk" class="kiosk-primary" type="button" onclick="window.__startWeddingKiosk(event)">BẮT ĐẦU TRÌNH CHIẾU</button>
       <button id="wakeButton" class="kiosk-secondary" type="button">GIỮ MÀN HÌNH SÁNG</button>
     </div>
     <div id="kioskHint" class="kiosk-panel__hint"></div>
@@ -602,6 +614,48 @@ body{
   </div>
 </div>
 
+
+<script>
+(function(){
+  window.__startWeddingKiosk = async function(ev){
+    if (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+    }
+
+    const panel = document.getElementById("kioskPanel");
+    const bar = document.getElementById("kioskBar");
+    const hint = document.getElementById("kioskHint");
+
+    if (panel) panel.classList.add("hidden");
+    if (bar) bar.hidden = false;
+
+    // Keep the first gesture synchronous as much as possible for iPad Safari.
+    try {
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
+      }
+    } catch (err) {
+      console.warn("Fullscreen unavailable:", err);
+    }
+
+    try {
+      if ("wakeLock" in navigator) {
+        await navigator.wakeLock.request("screen");
+        if (hint) hint.textContent = "Đã bật giữ sáng. Không đóng tab trình chiếu.";
+      } else if (hint) {
+        hint.textContent = "Trình duyệt không hỗ trợ Wake Lock. Với laptop, đặt Sleep = Never.";
+      }
+    } catch (err) {
+      console.warn("Wake Lock unavailable:", err);
+      if (hint) hint.textContent = "Giữ sáng tự động không khả dụng trên thiết bị này.";
+    }
+
+    // Tell the Firebase/slideshow module that the user has entered kiosk mode.
+    window.dispatchEvent(new CustomEvent("wedding-kiosk-start"));
+  };
+})();
+</script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {
@@ -873,7 +927,19 @@ async function startKioskMode(){
   }
 }
 
-startKiosk.addEventListener("click", startKioskMode);
+window.addEventListener("wedding-kiosk-start", async ()=>{
+  kioskStarted = true;
+  kioskPanel.classList.add("hidden");
+  kioskBar.hidden = false;
+
+  // The classic fallback already attempted Wake Lock; this refreshes module state.
+  await requestWakeLock();
+
+  if (!slideshowStarted && displayQueue.length) {
+    startInitialSlideshow();
+  }
+});
+
 wakeButton.addEventListener("click", requestWakeLock);
 
 exitKiosk.addEventListener("click", async ()=>{
