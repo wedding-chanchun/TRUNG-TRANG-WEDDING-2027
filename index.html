@@ -338,16 +338,14 @@
       openInvitation.setAttribute('aria-busy','true');
 
       const startedAt = performance.now();
-      const keyAssets = [
+      const firstScreenAssets = [
         'assets/images/section-bg-01.jpg',
-        'assets/images/story/01-our-story-hero.jpg',
-        'assets/images/save-date-bg.jpg',
-        'assets/images/location-bg.jpg',
-        'assets/images/bokeh.jpg'
+        'assets/images/story/01-our-story-hero.jpg'
       ];
 
-      // Give the next screen a short head start while the button visibly loads.
-      await Promise.all(keyAssets.map(preloadImage));
+      // Chỉ chờ asset cần thiết cho màn hình đầu tiên.
+      // Không chặn việc mở thiệp bởi các section phía dưới.
+      await Promise.all(firstScreenAssets.map(preloadImage));
       const elapsed = performance.now() - startedAt;
       const minimumWait = 1700;
       if (elapsed < minimumWait) {
@@ -363,6 +361,28 @@
         window.scrollTo({top:0, behavior:'instant'});
       }, 1450);
     }
+
+    function warmLaterAssets(){
+      const laterAssets = [
+        'assets/images/save-date-bg.jpg',
+        'assets/images/location-bg.jpg',
+        'assets/images/bokeh.jpg'
+      ];
+
+      laterAssets.forEach(src => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = src;
+      });
+    }
+
+    window.addEventListener('load', () => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(warmLaterAssets, {timeout:2500});
+      } else {
+        setTimeout(warmLaterAssets, 1200);
+      }
+    });
 
     openInvitation.addEventListener('click', openWeddingInvitation);
     openInvitation.addEventListener('keydown', e => {
