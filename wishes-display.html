@@ -516,6 +516,40 @@ body{
   .top{display:none !important}
   .floral--br{display:none !important}
 }
+
+@media (orientation:landscape){
+  .iphone__conversation{
+    top:141px;
+    bottom:72px;
+    justify-content:center;
+    overflow:hidden;
+  }
+
+  .bubble--wish{
+    width:min(76%,620px);
+    height:min(52vh,470px);
+    min-height:260px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:26px 30px 20px;
+    overflow:hidden;
+  }
+
+  .bubble--wish .message{
+    width:100%;
+    max-height:100%;
+    overflow:hidden;
+    font-size:clamp(18px,3.2vw,54px);
+    line-height:1.12;
+    display:block;
+  }
+
+  .bubble--wish .from{
+    flex:0 0 auto;
+  }
+}
 </style>
 </head>
 <body>
@@ -686,6 +720,42 @@ function sortByCreatedAtAsc(list) {
   });
 }
 
+
+function fitWishMessage(){
+  const message = messageEl;
+  const bubble = document.querySelector(".bubble--wish");
+  if (!message || !bubble) return;
+
+  // Chỉ tối ưu cho khung trình chiếu ngang.
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    message.style.fontSize = "";
+    message.style.lineHeight = "1.12";
+
+    const maxSize = 54;
+    const minSize = 16;
+    let size = maxSize;
+
+    message.style.fontSize = size + "px";
+
+    while (
+      size > minSize &&
+      (message.scrollHeight > message.clientHeight ||
+       message.scrollWidth > message.clientWidth)
+    ) {
+      size -= 1;
+      message.style.fontSize = size + "px";
+    }
+  } else {
+    message.style.fontSize = "";
+    message.style.lineHeight = "";
+  }
+}
+
+window.addEventListener("resize", fitWishMessage);
+window.addEventListener("orientationchange", () => {
+  setTimeout(fitWishMessage, 80);
+});
+
 function showWish(index) {
   if (!displayQueue.length) {
     showWaitingState("Đang chờ lời chúc được duyệt...");
@@ -703,6 +773,8 @@ function showWish(index) {
     ? "— " + wish.displayName + " —"
     : (wish.name ? "— " + wish.name + " —" : "");
   timeEl.textContent = formatTime(wish.createdAt);
+
+  requestAnimationFrame(() => fitWishMessage());
 
   currentWishStartedAt = Date.now();
   currentWishDeadline = currentWishStartedAt + DISPLAY_MS;
