@@ -1208,6 +1208,33 @@ html,body{
     padding:26px 30px 20px !important;
   }
 }
+
+/* V6 — lật trang thay cho hiệu ứng nháy */
+.wedding-book__wish{
+  transform-origin:left center !important;
+  transform-style:preserve-3d !important;
+  -webkit-transform-style:preserve-3d !important;
+  will-change:transform,opacity !important;
+}
+.wedding-book__wish.page-turn-out{
+  transform:perspective(1500px) rotateY(-88deg) !important;
+  opacity:.12 !important;
+  transition:transform .42s cubic-bezier(.55,.08,.75,.25),opacity .42s ease !important;
+  box-shadow:18px 18px 34px rgba(62,40,34,.20),inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+.wedding-book__wish.page-turn-in{
+  animation:pageTurnIn .72s cubic-bezier(.22,.72,.25,1) both !important;
+}
+@keyframes pageTurnIn{
+  0%{transform:perspective(1500px) rotateY(88deg);opacity:.12}
+  55%{transform:perspective(1500px) rotateY(-8deg);opacity:.92}
+  100%{transform:perspective(1500px) rotateY(0deg);opacity:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .wedding-book__wish,.wedding-book__wish.page-turn-out,.wedding-book__wish.page-turn-in{
+    animation:none !important;transition:none !important;transform:none !important;opacity:1 !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1399,17 +1426,39 @@ function showWish(index) {
 
   const wish = displayQueue[index];
 
-  card.classList.remove("fade");
-  void card.offsetWidth;
-  card.classList.add("fade");
+  const updateWishContent = () => {
+    messageEl.textContent = wish.displayMessage || wish.message || "Một lời chúc thật đẹp ♡";
+    fromEl.textContent = wish.displayName
+      ? "— " + wish.displayName + " —"
+      : (wish.name ? "— " + wish.name + " —" : "");
+    timeEl.textContent = formatTime(wish.createdAt);
 
-  messageEl.textContent = wish.displayMessage || wish.message || "Một lời chúc thật đẹp ♡";
-  fromEl.textContent = wish.displayName
-    ? "— " + wish.displayName + " —"
-    : (wish.name ? "— " + wish.name + " —" : "");
-  timeEl.textContent = formatTime(wish.createdAt);
+    requestAnimationFrame(() => fitWishMessage());
+  };
 
-  requestAnimationFrame(() => fitWishMessage());
+  // Lời đầu tiên hiện bình thường. Các lời sau chuyển bằng hiệu ứng lật trang.
+  if (!window.__wishPageStarted) {
+    window.__wishPageStarted = true;
+    card.classList.remove("page-turn-out","page-turn-in","fade");
+    updateWishContent();
+  } else {
+    card.classList.remove("page-turn-in");
+    card.classList.add("page-turn-out");
+
+    window.setTimeout(() => {
+      updateWishContent();
+
+      requestAnimationFrame(() => {
+        card.classList.remove("page-turn-out");
+        void card.offsetWidth;
+        card.classList.add("page-turn-in");
+
+        window.setTimeout(() => {
+          card.classList.remove("page-turn-in");
+        }, 760);
+      });
+    }, 420);
+  }
 
   currentWishStartedAt = Date.now();
   currentWishDeadline = currentWishStartedAt + DISPLAY_MS;
