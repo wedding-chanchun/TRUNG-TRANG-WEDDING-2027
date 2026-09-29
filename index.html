@@ -266,13 +266,39 @@
     <section class="rsvp section" id="rsvp">
       <div class="rsvp__bg"></div>
       <div class="rsvp__shade"></div>
-      <div class="rsvp__content">
+      <div class="rsvp__content rsvp-card">
         <p class="eyebrow">RSVP</p>
         <h2>Bạn sẽ</h2>
         <div class="script-title rose">đến chứ?</div>
-        <p>Chúng tôi rất mong được đón bạn<br>trong ngày đặc biệt này.</p>
-        <button class="rsvp-button" disabled>XÁC NHẬN THAM DỰ <span>→</span></button>
-        <small>RSVP sẽ được mở khi thông tin ngày cưới được cập nhật.</small>
+        <p class="rsvp-lead">Chúng tôi rất mong được gặp bạn<br>trong ngày đặc biệt này.</p>
+
+        <form class="rsvp-form" id="rsvpForm">
+          <div class="rsvp-block">
+            <span class="rsvp-block__number">01</span>
+            <h3>XÁC NHẬN THAM DỰ</h3>
+            <label>Họ và tên<input type="text" name="name" autocomplete="name" placeholder="Tên của bạn" required></label>
+            <label>Số người tham dự<input type="number" name="guests" min="1" max="10" value="1" required></label>
+            <div class="rsvp-choice" role="group" aria-label="Xác nhận tham dự">
+              <label><input type="radio" name="attendance" value="yes" required><span>TÔI SẼ ĐẾN ♡</span></label>
+              <label><input type="radio" name="attendance" value="no"><span>RẤT TIẾC, TÔI KHÔNG THỂ ĐẾN</span></label>
+            </div>
+          </div>
+
+          <div class="rsvp-block rsvp-wish">
+            <span class="rsvp-block__number">02</span>
+            <h3>GỬI LỜI CHÚC</h3>
+            <p>Hãy để lại một lời chúc cho Thành Trung &amp; Nhật Trang ♡</p>
+            <textarea name="message" rows="5" placeholder="Viết một lời chúc thật đẹp cho chúng tôi..."></textarea>
+          </div>
+
+          <button class="rsvp-button" type="submit">GỬI XÁC NHẬN <span>→</span></button>
+        </form>
+
+        <div class="rsvp-success" id="rsvpSuccess" hidden>
+          <div class="rsvp-success__heart">♡</div>
+          <h3>CẢM ƠN BẠN</h3>
+          <p>Lời xác nhận và lời chúc của bạn đã được ghi nhận.<br>Hẹn gặp bạn trong ngày đặc biệt ấy.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -367,5 +393,13 @@
     });
   </script>
   </div>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const form=document.getElementById("rsvpForm"), success=document.getElementById("rsvpSuccess");
+ if(!form||!success)return;
+ form.addEventListener("submit",e=>{e.preventDefault(); form.hidden=true; success.hidden=false; success.scrollIntoView({behavior:"smooth",block:"center"});});
+});
+</script>
 </body>
 </html>
