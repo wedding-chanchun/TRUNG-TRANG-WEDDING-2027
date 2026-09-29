@@ -769,6 +769,200 @@ body{
   .wedding-book__wish-area{left:8%;right:8%;top:34%;bottom:21%}
   .wedding-book__wish{width:92%;height:62%;padding:26px 28px 20px}
 }
+
+/* =========================================================
+   SUNFLOWER RENDER MATCH V3
+   Visual overrides only — JavaScript untouched.
+   Target: 16:9 landscape display matching approved render.
+   ========================================================= */
+html,body{
+  width:100%;
+  height:100%;
+  min-height:100%;
+}
+body{
+  overflow:hidden;
+  background:#f8eee9 !important;
+}
+
+/* Remove the old "paper/card inside page" composition. */
+.wedding-book.card{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+  max-width:none !important;
+  margin:0 !important;
+  display:block !important;
+}
+.wedding-book__page{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  overflow:hidden !important;
+  background:
+    linear-gradient(rgba(255,247,244,.10),rgba(255,247,244,.10)),
+    url("assets/images/wedding-guestbook-sunflower-bg.jpg") center center / cover no-repeat !important;
+}
+.wedding-book__page:before,
+.wedding-book__page:after,
+.wedding-book__frame,
+.wedding-book__floral,
+.wedding-book__ornament,
+.wedding-book__note{
+  display:none !important;
+}
+
+/* Header exactly belongs to the live HTML, not to the image. */
+.wedding-book__heading{
+  display:block !important;
+  position:absolute !important;
+  top:9.5vh !important;
+  left:0 !important;
+  right:0 !important;
+  text-align:center !important;
+  z-index:10 !important;
+  color:#4b3437 !important;
+}
+.wedding-book__kicker{
+  font-size:clamp(9px,1vw,14px) !important;
+  letter-spacing:.34em !important;
+  color:#86575f !important;
+}
+.wedding-book__title{
+  margin-top:13px !important;
+  font-size:clamp(38px,5.1vw,82px) !important;
+  line-height:.95 !important;
+  color:#38272a !important;
+  text-shadow:0 1px 0 rgba(255,255,255,.5);
+}
+.wedding-book__subtitle{
+  margin-top:13px !important;
+  font-size:clamp(8px,.9vw,13px) !important;
+  letter-spacing:.23em !important;
+  color:#815d63 !important;
+}
+
+/* Center wish card — same visual proportion as the approved render. */
+.wedding-book__wish-area{
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  top:37% !important;
+  bottom:auto !important;
+  height:31.5vh !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  z-index:12 !important;
+}
+.wedding-book__wish{
+  position:relative !important;
+  width:min(48vw,780px) !important;
+  height:min(30vh,330px) !important;
+  min-height:230px !important;
+  max-height:330px !important;
+  padding:30px 72px !important;
+  box-sizing:border-box !important;
+  border:1px solid rgba(177,124,69,.42) !important;
+  border-radius:22px !important;
+  background:rgba(255,249,243,.78) !important;
+  box-shadow:
+    0 18px 50px rgba(91,61,43,.16),
+    inset 0 1px 0 rgba(255,255,255,.95) !important;
+  backdrop-filter:blur(2px);
+  overflow:hidden !important;
+}
+.wedding-book__wish:before,
+.wedding-book__wish:after{
+  content:"✿" !important;
+  position:absolute !important;
+  color:#d8a83f !important;
+  font-size:25px !important;
+  line-height:1 !important;
+  opacity:.95 !important;
+  display:block !important;
+}
+.wedding-book__wish:before{left:24px !important;top:20px !important}
+.wedding-book__wish:after{right:24px !important;bottom:20px !important}
+
+.wedding-book__wish .message{
+  width:100% !important;
+  max-height:calc(100% - 35px) !important;
+  overflow:hidden !important;
+  text-align:center !important;
+  font-family:"Cormorant Garamond",Georgia,serif !important;
+  font-size:clamp(25px,3.2vw,54px) !important;
+  line-height:1.12 !important;
+  font-weight:400 !important;
+  color:#4b373a !important;
+}
+.wedding-book__wish .from{
+  margin-top:14px !important;
+  flex:0 0 auto !important;
+  font-family:"Cormorant Garamond",Georgia,serif !important;
+  font-size:clamp(11px,1vw,16px) !important;
+  color:#947078 !important;
+  letter-spacing:.06em !important;
+}
+
+/* Keep timestamp low and subtle like the render. */
+.wedding-book__heart{
+  display:block !important;
+  position:absolute !important;
+  left:50% !important;
+  bottom:17.2vh !important;
+  transform:translateX(-50%) !important;
+  color:#bd7f8c !important;
+  font-size:24px !important;
+  z-index:12 !important;
+}
+.wedding-book__date{
+  display:block !important;
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:12.8vh !important;
+  z-index:12 !important;
+  color:#80676c !important;
+  font-size:10px !important;
+  letter-spacing:.14em !important;
+}
+
+/* Progress is deliberately almost invisible in the visual. */
+.wedding-book__progress{
+  display:none !important;
+}
+
+/* Keep the bottom kiosk control as the only utility UI. */
+.kiosk-bar{
+  z-index:100 !important;
+}
+
+/* Landscape is the intended wedding-display mode. */
+@media (orientation:landscape){
+  .wedding-book__title{font-size:clamp(44px,5.0vw,80px) !important}
+  .wedding-book__wish{
+    width:min(50vw,800px) !important;
+    height:min(31vh,335px) !important;
+  }
+}
+@media (orientation:portrait){
+  .wedding-book__heading{top:7vh !important}
+  .wedding-book__wish-area{top:34% !important;height:34vh !important}
+  .wedding-book__wish{
+    width:86vw !important;
+    height:32vh !important;
+    min-height:220px !important;
+    padding:26px 30px !important;
+  }
+  .wedding-book__title{font-size:clamp(32px,8vw,52px) !important}
+}
 </style>
 </head>
 <body>
