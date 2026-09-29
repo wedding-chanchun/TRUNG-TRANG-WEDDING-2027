@@ -529,6 +529,7 @@ import {
   query,
   orderBy,
   limit,
+  where,
   onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -551,37 +552,59 @@ const card = document.getElementById("card");
 const progress = document.getElementById("progress");
 
 let wishes = [];
+let displayQueue = [];
+let pendingNew = [];
+let knownIds = new Set();
 let currentIndex = 0;
 let timer = null;
 let progressTimer = null;
-const DISPLAY_MS = 7000;
+let slideshowStarted = false;
 
-function formatTime(timestamp) {
-  if (!timestamp || typeof timestamp.toDate !== "function") return "";
-  return timestamp.toDate().toLocaleString("vi-VN", {
-    day: "2-digit", month: "2-digit", year: "numeric"
+const DISPLAY_MS = 7000;
+const MAX_DISPLAY_WISHES = 100;
+
+/*
+  QUY TẮC TRÌNH CHIẾU — TRUNG × TRANG
+  1. Chỉ lời chúc đã được Admin duyệt mới được chiếu.
+  2. Màn hình lấy tối đa 100 lời chúc đã duyệt gần nhất.
+  3. Vòng đầu tiên chạy từ cũ → mới.
+  4. Lời chúc mới đã duyệt KHÔNG chen ngang lời đang hiển thị.
+  5. Lời chúc mới được ưu tiên ở đầu vòng kế tiếp.
+  6. Firestore cập nhật realtime, không cần refresh màn hình.
+  7. Admin có thể sửa tên và nội dung; bản đã sửa dùng displayName/displayMessage.
+*/
+
+function sortByCreatedAtAsc(list) {
+  return [...list].sort((a, b) => {
+    const ta = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+    const tb = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+    return ta - tb;
   });
 }
 
 function showWish(index) {
-  if (!wishes.length) {
+  if (!displayQueue.length) {
     messageEl.textContent = "Đang chờ những lời chúc đầu tiên...";
     fromEl.textContent = "";
     timeEl.textContent = "";
     return;
   }
 
-  const wish = wishes[index];
+  const wish = displayQueue[index];
+
   card.classList.remove("fade");
   void card.offsetWidth;
   card.classList.add("fade");
 
-  messageEl.textContent = wish.message || "Một lời chúc thật đẹp ♡";
-  fromEl.textContent = wish.name ? "— " + wish.name + " —" : "";
+  messageEl.textContent = wish.displayMessage || wish.message || "Một lời chúc thật đẹp ♡";
+  fromEl.textContent = wish.displayName
+    ? "— " + wish.displayName + " —"
+    : (wish.name ? "— " + wish.name + " —" : "");
   timeEl.textContent = formatTime(wish.createdAt);
 
   progress.style.width = "0%";
   clearInterval(progressTimer);
+
   const started = performance.now();
   progressTimer = setInterval(() => {
     const pct = Math.min(100, ((performance.now() - started) / DISPLAY_MS) * 100);
@@ -590,27 +613,78 @@ function showWish(index) {
   }, 50);
 }
 
-function restartSlideshow() {
+function buildInitialQueue(allWishes) {
+  const selected = allWishes
+    .slice()
+    .sort((a, b) => {
+      const ta = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+      const tb = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+      return tb - ta;
+    })
+    .slice(0, MAX_DISPLAY_WISHES);
+
+  return sortByCreatedAtAsc(selected);
+}
+
+function startInitialSlideshow() {
+  if (!displayQueue.length) {
+    showWish(0);
+    return;
+  }
+
   clearInterval(timer);
   currentIndex = 0;
+  slideshowStarted = true;
   showWish(currentIndex);
 
   timer = setInterval(() => {
-    if (!wishes.length) return;
-    currentIndex = (currentIndex + 1) % wishes.length;
+    if (!displayQueue.length) return;
+
+    currentIndex += 1;
+
+    if (currentIndex >= displayQueue.length) {
+      if (pendingNew.length) {
+        const fresh = sortByCreatedAtAsc(pendingNew);
+        const freshIds = new Set(fresh.map(w => w.id));
+        const old = displayQueue.filter(w => !freshIds.has(w.id));
+
+        displayQueue = [...fresh, ...old].slice(0, MAX_DISPLAY_WISHES);
+        pendingNew = [];
+      }
+
+      currentIndex = 0;
+    }
+
     showWish(currentIndex);
   }, DISPLAY_MS);
 }
 
 const wishesQuery = query(
   collection(db, "wedding_wishes"),
+  where("approved", "==", true),
   orderBy("createdAt", "desc"),
-  limit(100)
+  limit(MAX_DISPLAY_WISHES)
 );
 
 onSnapshot(wishesQuery, snapshot => {
-  wishes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  restartSlideshow();
+  const incoming = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+  if (!slideshowStarted) {
+    wishes = incoming;
+    knownIds = new Set(incoming.map(w => w.id));
+    displayQueue = buildInitialQueue(incoming);
+    startInitialSlideshow();
+    return;
+  }
+
+  const newWishes = incoming.filter(w => !knownIds.has(w.id));
+
+  if (newWishes.length) {
+    newWishes.forEach(w => knownIds.add(w.id));
+    pendingNew.push(...newWishes);
+  }
+
+  wishes = incoming;
 }, error => {
   console.error("Wishes display error:", error);
   messageEl.textContent = "Chưa thể tải lời chúc.";
