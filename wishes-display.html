@@ -550,6 +550,146 @@ body{
     flex:0 0 auto;
   }
 }
+
+/* ===== WEDDING BOOK VISUAL — presentation layer ===== */
+.wedding-book{
+  position:relative;
+  width:min(980px,88vw);
+  height:min(650px,72vh);
+  margin:0 auto;
+}
+.wedding-book__page{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:14px 24px 24px 14px;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(203,154,143,.11),transparent 26%),
+    radial-gradient(circle at 87% 82%,rgba(177,119,131,.09),transparent 28%),
+    linear-gradient(110deg,#fffdfa,#fbf3ef 52%,#fffaf6);
+  border:1px solid rgba(112,73,81,.12);
+  box-shadow:0 28px 70px rgba(77,48,54,.14),inset 0 1px rgba(255,255,255,.95);
+}
+.wedding-book__page:before{
+  content:"";
+  position:absolute;left:50%;top:6%;bottom:6%;width:1px;
+  background:linear-gradient(transparent,rgba(112,73,81,.10),transparent);
+}
+.wedding-book__frame{
+  position:absolute;inset:18px;
+  border:1px solid rgba(112,73,81,.08);
+  border-radius:9px 17px 17px 9px;
+  pointer-events:none;
+}
+.wedding-book__floral{
+  position:absolute;z-index:1;pointer-events:none;
+  width:250px;height:250px;background-size:contain;background-repeat:no-repeat;
+  opacity:.20;
+}
+.wedding-book__floral--tl{
+  left:-54px;top:-54px;
+  background-image:url("assets/images/floral-corner-left.png");
+  background-position:top left;
+}
+.wedding-book__floral--br{
+  right:-64px;bottom:-64px;
+  background-image:url("assets/images/floral-corner-right.png");
+  background-position:bottom right;
+  transform:rotate(180deg);
+}
+.wedding-book__heading{
+  position:absolute;top:30px;left:0;right:0;text-align:center;z-index:3;
+}
+.wedding-book__kicker{
+  font:600 9px/1 "Montserrat",Arial,sans-serif;
+  letter-spacing:.34em;color:#a66b78;
+}
+.wedding-book__title{
+  margin-top:10px;
+  font:400 clamp(30px,4vw,52px)/.95 "Cormorant Garamond",Georgia,serif;
+  color:#4a383c;
+}
+.wedding-book__subtitle{
+  margin-top:8px;
+  font:500 8px/1 "Montserrat",Arial,sans-serif;
+  letter-spacing:.20em;color:#a58a8f;
+}
+.wedding-book__ornament{
+  position:absolute;left:50%;top:24%;
+  transform:translateX(-50%);color:#b77a86;font-size:16px;z-index:3;
+}
+.wedding-book__wish-area{
+  position:absolute;z-index:3;
+  left:9%;right:9%;top:29%;bottom:17%;
+  display:flex;align-items:center;justify-content:center;
+}
+.wedding-book__wish{
+  width:min(690px,88%);
+  height:min(350px,76%);
+  min-height:220px;
+  box-sizing:border-box;
+  padding:32px 50px 22px;
+  border:1px solid rgba(112,73,81,.10);
+  border-radius:5px;
+  background:rgba(255,255,255,.74);
+  box-shadow:0 15px 42px rgba(77,48,54,.07);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
+.wedding-book__wish .message{
+  width:100%;max-height:100%;overflow:hidden;
+  font:400 clamp(28px,4vw,56px)/1.12 "Cormorant Garamond",Georgia,serif;
+  color:#4a383c;
+}
+.wedding-book__wish .from{
+  flex:0 0 auto;margin-top:17px;
+  font:400 12px/1 "Cormorant Garamond",Georgia,serif;
+  letter-spacing:.08em;color:#98747c;
+}
+.wedding-book__heart{
+  position:absolute;left:50%;bottom:9%;
+  transform:translateX(-50%);
+  color:#bd7f8c;font:400 22px/1 Georgia,serif;z-index:3;
+}
+.wedding-book__date{
+  position:absolute;left:0;right:0;bottom:4.5%;
+  text-align:center;
+  font:500 8px/1 "Montserrat",Arial,sans-serif;
+  letter-spacing:.16em;color:#ab8e93;z-index:3;
+}
+.wedding-book__note{
+  position:absolute;right:38px;bottom:28px;
+  font:italic 11px/1 "Cormorant Garamond",Georgia,serif;
+  color:#a58a8f;z-index:3;
+}
+.wedding-book__progress{
+  position:absolute;left:24%;right:24%;bottom:2.5%;
+  height:2px;background:rgba(112,73,81,.08);overflow:hidden;z-index:4;
+}
+.wedding-book__progress i{display:block;width:0;height:100%;background:rgba(166,107,120,.58)}
+
+#card.fade .wedding-book__wish{
+  animation:weddingWishFade .55s ease;
+}
+@keyframes weddingWishFade{
+  from{opacity:.2;transform:translateY(7px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media (orientation:landscape){
+  .wedding-book{height:min(650px,70vh)}
+  .wedding-book__wish{
+    width:min(690px,86%);
+    height:min(350px,70%);
+  }
+}
+@media (orientation:portrait){
+  .wedding-book{width:92vw;height:72vh}
+  .wedding-book__wish-area{left:6%;right:6%;top:29%;bottom:17%}
+  .wedding-book__wish{width:92%;height:64%;padding:26px 28px 20px}
+  .wedding-book__floral{opacity:.16}
+}
 </style>
 </head>
 <body>
@@ -565,46 +705,33 @@ body{
     <div class="names">THÀNH TRUNG <span>&amp;</span> NHẬT TRANG</div>
   </div>
 
-  <main class="iphone" id="card" aria-label="Sổ lời chúc">
-    <div class="iphone__side iphone__side--left"></div>
-    <div class="iphone__side iphone__side--right"></div>
-    <div class="iphone__frame">
-      <div class="iphone__screen">
-        <div class="island"></div>
-        <div class="iphone__status">
-          <span></span>
-          <span>♡</span>
-        </div>
+  <main class="wedding-book card" id="card" aria-label="Sổ lời chúc">
+  <div class="wedding-book__page">
+    <div class="wedding-book__frame"></div>
+    <div class="wedding-book__floral wedding-book__floral--tl"></div>
+    <div class="wedding-book__floral wedding-book__floral--br"></div>
 
-        <div class="iphone__header">
-          <div class="iphone__avatar">T<span>&amp;</span>N</div>
-          <div>
-            <div class="iphone__contact">Thành Trung &amp; Nhật Trang</div>
-            <div class="iphone__sub">Digital Guestbook</div>
-          </div>
-        </div>
+    <div class="wedding-book__heading">
+      <div class="wedding-book__kicker">WEDDING GUESTBOOK</div>
+      <div class="wedding-book__title">Trung &amp; Trang</div>
+      <div class="wedding-book__subtitle">15 · 05 · 2027 · OUR WEDDING DAY</div>
+    </div>
 
-        <div class="iphone__conversation">
-          <div class="iphone__date">HÔM NAY</div>
-          <div class="bubble bubble--system">Lời chúc từ những người thương ♡</div>
-          <div class="bubble bubble--wish">
-            <div class="message" id="message">Đang chờ những lời chúc đầu tiên...</div>
-            <div class="from" id="from"></div>
-          </div>
-          <div class="iphone__heart">♡</div>
-          <div class="time" id="time"></div>
-        </div>
+    <div class="wedding-book__ornament">♡</div>
 
-        <div class="iphone__composer">
-          <span>＋</span>
-          <div>Gửi một lời chúc…</div>
-          <span>♡</span>
-        </div>
-
-        <div class="iphone__home"></div>
+    <div class="wedding-book__wish-area">
+      <div class="wedding-book__wish bubble--wish">
+        <div class="message" id="message">Đang chờ những lời chúc đầu tiên...</div>
+        <div class="from" id="from"></div>
       </div>
     </div>
-  </main>
+
+    <div class="wedding-book__heart">♡</div>
+    <div class="wedding-book__date" id="time"></div>
+    <div class="wedding-book__note">A page written with love</div>
+    <div class="wedding-book__progress"><i id="progress"></i></div>
+  </div>
+</main>
 
   <div class="footer">
     <div class="small">WEDDING 2027 · WITH LOVE</div>
