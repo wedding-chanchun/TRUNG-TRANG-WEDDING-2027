@@ -511,6 +511,15 @@ body{
   .kiosk-panel__actions{width:100%;flex-direction:column;max-width:320px}
   .kiosk-primary,.kiosk-secondary{width:100%}
 }
+
+.landscape-title-hide{position:relative}
+@media (orientation:landscape){
+  .landscape-title-hide{display:none !important}
+}
+
+@media (orientation:landscape){
+  .floral--br{display:none !important}
+}
 </style>
 </head>
 <body>
@@ -961,7 +970,7 @@ onSnapshot(wishesQuery, snapshot => {
   console.error("Wishes display error:", error);
 
   if (!slideshowStarted) {
-    showWaitingState(
+    class="landscape-title-hide">showWaitingState(
       error?.code === "permission-denied"
         ? "Không có quyền đọc lời chúc đã duyệt."
         : "Chưa thể kết nối danh sách lời chúc."
