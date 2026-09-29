@@ -573,7 +573,7 @@ body{
   </div>
   <div class="progress"><i id="progress"></i></div>
   <div id="kioskPanel" class="kiosk-panel">
-    <div class="kiosk-panel__eyebrow">WEDDING DISPLAY · TRUNG × TRANG · V8.4</div>
+    <div class="kiosk-panel__eyebrow">WEDDING DISPLAY · TRUNG × TRANG · V8.5</div>
     <div class="kiosk-panel__title">Sẵn sàng trình chiếu</div>
     <div class="kiosk-panel__text">
       Bấm bắt đầu một lần. Màn hình sẽ chạy lời chúc tự động và cố gắng giữ màn hình luôn sáng.
@@ -652,6 +652,29 @@ const MAX_DISPLAY_WISHES = 100;
   7. Admin có thể sửa tên và nội dung; bản đã sửa dùng displayName/displayMessage.
   8. Chế độ KIOSK và Wake Lock độc lập với slideshow; mất Wake Lock không được làm dừng lời chúc.
 */
+
+function formatTime(value) {
+  if (!value) return "";
+
+  try {
+    const date = value?.toDate
+      ? value.toDate()
+      : (value instanceof Date ? value : new Date(value));
+
+    if (Number.isNaN(date.getTime())) return "";
+
+    return new Intl.DateTimeFormat("vi-VN", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    }).format(date);
+  } catch (err) {
+    console.warn("formatTime error:", err);
+    return "";
+  }
+}
 
 function sortByCreatedAtAsc(list) {
   return [...list].sort((a, b) => {
@@ -948,7 +971,8 @@ onSnapshot(wishesQuery, snapshot => {
   } catch (err) {
     console.error("Wishes snapshot runtime error:", err);
     if (wishCount) wishCount.textContent = "";
-    setDataStatus("LỖI XỬ LÝ DỮ LIỆU", "error");
+    const runtimeLabel = err?.name ? `${err.name}` : "RUNTIME ERROR";
+    setDataStatus(runtimeLabel, "error");
     showWaitingState("Không thể xử lý danh sách lời chúc.");
   }
 }, error => {
