@@ -698,7 +698,7 @@ h2{
 }
 .rsvp__bg{
   position:absolute;inset:0;
-  background:url("assets/images/rsvp-bg.jpg") center/cover no-repeat;
+  background:url("assets/images/rsvp-hearts-bg.png") center/cover no-repeat;
 }
 .rsvp__shade{
   position:absolute;inset:0;
