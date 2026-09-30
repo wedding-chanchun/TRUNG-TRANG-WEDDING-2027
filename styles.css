@@ -3560,3 +3560,40 @@ h2{
     scroll-behavior:auto;
   }
 }
+
+
+/* =========================================================
+   SAVE THE DATE — DATE NUMBERS V1.1
+   Tăng nhẹ kích thước ngày/tháng/năm trên mobile.
+   ========================================================= */
+.save-date__day,
+.save-date__month{
+  font-size:clamp(70px,13vw,116px);
+}
+
+.save-date__year{
+  font-size:clamp(50px,8.5vw,76px);
+}
+
+.save-date__slash{
+  font-size:clamp(34px,6vw,52px);
+}
+
+@media(max-width:700px){
+  .save-date__day,
+  .save-date__month{
+    font-size:clamp(70px,18vw,86px);
+  }
+
+  .save-date__year{
+    font-size:clamp(50px,13vw,62px);
+  }
+
+  .save-date__slash{
+    font-size:clamp(34px,8vw,42px);
+  }
+
+  .save-date__date{
+    gap:7px;
+  }
+}
