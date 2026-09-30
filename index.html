@@ -38,6 +38,11 @@
       <div class="cover__line"></div>
       <p class="cover__year">2027</p>
 
+      <div class="cover__countdown" aria-label="Đếm ngược đến ngày cưới">
+        <strong id="coverCountdown">—</strong>
+        <span>DAYS TO GO</span>
+      </div>
+
       <button class="cover__button" type="button" aria-label="Mở thiệp">
         <span class="cover__button-label">MỞ THIỆP</span>
         <span class="cover__button-spinner" aria-hidden="true"></span>
@@ -464,6 +469,18 @@
     const weddingPage = document.getElementById('weddingPage');
 
     let invitationOpening = false;
+
+    function updateCoverCountdown(){
+      const target = new Date('2027-05-15T00:00:00+07:00');
+      const now = new Date();
+      const diff = target.getTime() - now.getTime();
+      const days = Math.max(0, Math.ceil(diff / 86400000));
+      const el = document.getElementById('coverCountdown');
+      if (el) el.textContent = days;
+    }
+
+    updateCoverCountdown();
+    setInterval(updateCoverCountdown, 60000);
 
     function preloadImage(src){
       return new Promise(resolve => {
