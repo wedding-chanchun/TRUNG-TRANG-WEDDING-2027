@@ -14,98 +14,138 @@
 
 <body>
   <section class="invitation-cover" id="invitationCover" aria-label="Mở thiệp cưới">
-  <div class="cover__background" aria-hidden="true">
-    <div class="cover__background-paper"></div>
-    <div class="cover__background-watercolor"></div>
-    <div class="cover__background-flower cover__background-flower--tl"></div>
-    <div class="cover__background-flower cover__background-flower--tr"></div>
-    <div class="cover__background-flower cover__background-flower--bl"></div>
-    <div class="cover__background-flower cover__background-flower--br"></div>
-    <div class="cover__background-petals"></div>
-  </div>
-
-  <div class="cover__card" id="openInvitation" role="button" tabindex="0" aria-label="Nhấn để mở thiệp" aria-controls="weddingPage" aria-expanded="false">
-    <!-- 34-piece wedding-cover asset library: every asset is intentionally used as a separate layer. -->
-    <div class="cover__paper" aria-hidden="true"></div>
-    <div class="cover__watercolor" aria-hidden="true"></div>
-    <div class="cover__frame" aria-hidden="true"></div>
-
-    <div class="cover__corner cover__corner--tl" aria-hidden="true"></div>
-    <div class="cover__corner cover__corner--tr" aria-hidden="true"></div>
-    <div class="cover__corner cover__corner--bl" aria-hidden="true"></div>
-    <div class="cover__corner cover__corner--br" aria-hidden="true"></div>
-
-    <div class="cover__hanging cover__hanging--left" aria-hidden="true"></div>
-    <div class="cover__hanging cover__hanging--right" aria-hidden="true"></div>
-    <div class="cover__side-branch cover__side-branch--left" aria-hidden="true"></div>
-    <div class="cover__side-branch cover__side-branch--right" aria-hidden="true"></div>
-    <div class="cover__vine" aria-hidden="true"></div>
-    <div class="cover__berry" aria-hidden="true"></div>
-
-    <div class="cover__cluster cover__cluster--left" aria-hidden="true"></div>
-    <div class="cover__cluster cover__cluster--right" aria-hidden="true"></div>
-    <div class="cover__single-flower cover__single-flower--left" aria-hidden="true"></div>
-    <div class="cover__single-flower cover__single-flower--right" aria-hidden="true"></div>
-    <div class="cover__rose cover__rose--left" aria-hidden="true"></div>
-    <div class="cover__rose cover__rose--right" aria-hidden="true"></div>
-    <div class="cover__bud cover__bud--left" aria-hidden="true"></div>
-    <div class="cover__bud cover__bud--right" aria-hidden="true"></div>
-    <div class="cover__blossom cover__blossom--left" aria-hidden="true"></div>
-    <div class="cover__blossom cover__blossom--right" aria-hidden="true"></div>
-    <div class="cover__white-rose" aria-hidden="true"></div>
-    <div class="cover__pink-rose" aria-hidden="true"></div>
-    <div class="cover__peony" aria-hidden="true"></div>
-    <div class="cover__leaves-branch" aria-hidden="true"></div>
-    <div class="cover__eucalyptus" aria-hidden="true"></div>
-    <div class="cover__green-filler" aria-hidden="true"></div>
-    <div class="cover__leaves-scatter" aria-hidden="true"></div>
-
-    <div class="cover__ornament-top" aria-hidden="true"></div>
-    <div class="cover__divider" aria-hidden="true"></div>
-
-    <div class="cover__garden" aria-hidden="true">
-      <div class="cover__garden-landscape"></div>
-      <div class="cover__garden-arch"></div>
+    <div class="cover-v5__backdrop" aria-hidden="true">
+      <img src="assets/images/wedding-cover/34_paper_texture.PNG" alt="">
+      <img src="assets/images/wedding-cover/33_watercolor_bg.PNG" alt="">
+      <img class="cover-v5__backdrop-petals" src="assets/images/wedding-cover/30_petals_scatter.PNG" alt="">
     </div>
 
-    <div class="cover__petals" aria-hidden="true"></div>
-    <div class="cover__petals-falling" aria-hidden="true"></div>
+    <div class="cover__petals" aria-hidden="true">
+      <img src="assets/images/wedding-cover/29_petals_falling.PNG" alt="">
+    </div>
 
-    <div class="cover__content">
-      <div class="cover__monogram" aria-hidden="true">
-        <img src="assets/images/wedding-cover/01_monogram_TT.png" alt="">
+    <div class="cover__card" id="openInvitation" role="button" tabindex="0"
+         aria-label="Nhấn để mở thiệp">
+
+      <!-- 34-ASSET COVER: BACKGROUND -->
+      <div class="cover-v5__paper" aria-hidden="true">
+        <img src="assets/images/wedding-cover/34_paper_texture.PNG" alt="">
+      </div>
+      <div class="cover-v5__watercolor" aria-hidden="true">
+        <img src="assets/images/wedding-cover/33_watercolor_bg.PNG" alt="">
       </div>
 
-      <p class="cover__eyebrow">WEDDING INVITATION</p>
-      <p class="cover__small">TRÂN TRỌNG KÍNH MỜI</p>
-
-      <div class="cover__ornament" aria-hidden="true">
-        <span></span><b>❦</b><span></span>
+      <!-- 34-ASSET COVER: GARDEN -->
+      <div class="cover-v5__garden" aria-hidden="true">
+        <img class="cover-v5__landscape"
+             src="assets/images/wedding-cover/32_garden_landscape.PNG" alt="">
+        <img class="cover-v5__arch"
+             src="assets/images/wedding-cover/31_garden_arch.PNG" alt="">
       </div>
 
-      <h1 class="cover__names">
-        <span class="cover__name cover__name--trung">THÀNH TRUNG</span>
-        <em class="cover__amp">&amp;</em>
-        <span class="cover__name cover__name--trang">NHẬT TRANG</span>
-      </h1>
+      <!-- 34-ASSET COVER: FRAME -->
+      <img class="cover-v5__frame"
+           src="assets/images/wedding-cover/02_frame_doubleline.PNG" alt="" aria-hidden="true">
 
-      <div class="cover__line" aria-hidden="true"></div>
-      <p class="cover__year">2027</p>
+      <!-- 34-ASSET COVER: CORNERS -->
+      <img class="cover-v5__corner cover-v5__corner--tl"
+           src="assets/images/wedding-cover/05_corner_top_left.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__corner cover-v5__corner--tr"
+           src="assets/images/wedding-cover/06_corner_top_right.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__corner cover-v5__corner--bl"
+           src="assets/images/wedding-cover/07_corner_bottom_left.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__corner cover-v5__corner--br"
+           src="assets/images/wedding-cover/08_corner_bottom_right.PNG" alt="" aria-hidden="true">
 
-      <button class="cover__button" type="button" aria-label="Mở thiệp">
-        <span class="cover__button-label">MỞ THIỆP</span>
-        <span class="cover__button-spinner" aria-hidden="true"></span>
-        <span class="cover__button-heart" aria-hidden="true">♡</span>
-      </button>
+      <!-- 34-ASSET COVER: BRANCHES -->
+      <img class="cover-v5__branch cover-v5__branch--hang-left"
+           src="assets/images/wedding-cover/09_hanging_branch_left.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__branch cover-v5__branch--hang-right"
+           src="assets/images/wedding-cover/10_hanging_branch_right.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__branch cover-v5__branch--side-left"
+           src="assets/images/wedding-cover/11_side_branch_left.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__branch cover-v5__branch--side-right"
+           src="assets/images/wedding-cover/12_side_branch_right.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__branch cover-v5__branch--vine"
+           src="assets/images/wedding-cover/13_vine_branch.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__branch cover-v5__branch--berry"
+           src="assets/images/wedding-cover/14_berry_branch.PNG" alt="" aria-hidden="true">
 
-      <p class="cover__hint">CHẠM ĐỂ MỞ</p>
+      <!-- 34-ASSET COVER: FLORAL HEADER / FOOTER -->
+      <img class="cover-v5__floral cover-v5__floral--header"
+           src="assets/images/wedding-cover/15_flower_header.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__floral cover-v5__floral--footer"
+           src="assets/images/wedding-cover/16_flower_footer.PNG" alt="" aria-hidden="true">
+
+      <!-- 34-ASSET COVER: FLOWERS / FOLIAGE -->
+      <img class="cover-v5__botanical cover-v5__botanical--cluster"
+           src="assets/images/wedding-cover/17_flower_cluster.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--rose"
+           src="assets/images/wedding-cover/18_rose_blossom.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--bud"
+           src="assets/images/wedding-cover/19_rose_bud.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--blossom"
+           src="assets/images/wedding-cover/20_blossom_small.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--single"
+           src="assets/images/wedding-cover/21_single_flower.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--white"
+           src="assets/images/wedding-cover/22_white_rose.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--pink"
+           src="assets/images/wedding-cover/23_pink_rose.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--peony"
+           src="assets/images/wedding-cover/24_peony.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--leaves"
+           src="assets/images/wedding-cover/25_leaves_branch.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--eucalyptus"
+           src="assets/images/wedding-cover/26_eucalyptus.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__botanical cover-v5__botanical--filler"
+           src="assets/images/wedding-cover/27_green_filler.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__scatter cover-v5__scatter--leaves"
+           src="assets/images/wedding-cover/28_leaves_scatter.PNG" alt="" aria-hidden="true">
+
+      <!-- 34-ASSET COVER: ORNAMENTS -->
+      <img class="cover-v5__monogram"
+           src="assets/images/wedding-cover/01_monogram_TT.PNG"
+           alt="T &amp; T" aria-hidden="true">
+      <img class="cover-v5__corner-ornament"
+           src="assets/images/wedding-cover/03_corner_ornament.PNG" alt="" aria-hidden="true">
+      <img class="cover-v5__divider"
+           src="assets/images/wedding-cover/04_divider_ornament.PNG" alt="" aria-hidden="true">
+
+      <!-- EDITORIAL CONTENT -->
+      <div class="cover-v5__content">
+        <p class="cover__eyebrow">WEDDING INVITATION</p>
+        <p class="cover__small">TRÂN TRỌNG KÍNH MỜI</p>
+
+        <h1 class="cover__names">
+          <span class="cover__name cover__name--trung">THÀNH TRUNG</span>
+          <em class="cover__amp">&amp;</em>
+          <span class="cover__name cover__name--trang">NHẬT TRANG</span>
+        </h1>
+
+        <div class="cover__line" aria-hidden="true"></div>
+        <p class="cover__year">2027</p>
+
+        <button class="cover__button" type="button" aria-label="Mở thiệp">
+          <span class="cover__button-label">MỞ THIỆP</span>
+          <span class="cover__button-spinner" aria-hidden="true"></span>
+          <span class="cover__button-heart" aria-hidden="true">♡</span>
+        </button>
+
+        <p class="cover__hint">CHẠM ĐỂ MỞ</p>
+      </div>
+
+      <div class="cover__countdown" aria-label="Còn lại đến ngày cưới">
+        <strong id="coverCountdown">—</strong>
+      </div>
+
+      <div class="cover-v5__petals-static" aria-hidden="true">
+        <img src="assets/images/wedding-cover/30_petals_scatter.PNG" alt="">
+      </div>
+
+      <div class="cover__shine" aria-hidden="true"></div>
     </div>
-
-    <div class="cover__countdown" aria-label="Còn lại đến ngày cưới">
-      <strong id="coverCountdown">—</strong>
-    </div>
-  </div>
-</section>
+  </section>
 
   <div class="wedding-page" id="weddingPage" aria-hidden="true">
   <div class="petals-fixed aria-hidden="true"></div>
