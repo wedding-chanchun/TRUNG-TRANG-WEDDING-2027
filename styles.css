@@ -3637,694 +3637,370 @@ h2{
 
 
 
-
 /* =========================================================
-   COVER V5 — FAIRYTALE GARDEN × MODERN EDITORIAL
-   Fresh cover architecture built from the current index.html
-   + styles.css source files.
-   All 34 wedding-cover assets are referenced individually.
+   TRUNG × TRANG — COVER V5.1 CLEAN
+   Rebuilt from the current source files.
+   All 34 wedding-cover assets are isolated under .tt-cover.
    ========================================================= */
-
-.invitation-cover{
-  position:fixed !important;
-  inset:0 !important;
-  z-index:1000 !important;
-  display:grid !important;
-  place-items:center !important;
-  overflow:hidden !important;
-  padding:18px !important;
-  background:
-    radial-gradient(circle at 50% 35%,rgba(255,255,255,.96),rgba(247,229,225,.96) 72%),
-    #f3dfdc !important;
-  opacity:1;
-  visibility:visible;
-  transition:opacity .9s cubic-bezier(.22,.61,.36,1),visibility .9s ease !important;
+.tt-cover{
+  position:fixed!important;
+  inset:0!important;
+  z-index:100!important;
+  display:grid!important;
+  place-items:center!important;
+  overflow:hidden!important;
+  background:#ead8d3!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  isolation:isolate!important;
 }
-.invitation-cover::after{
-  display:none !important;
+.tt-cover.is-open{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transition:opacity .9s ease,visibility .9s ease!important;
 }
-.invitation-cover.is-open{
-  opacity:0 !important;
-  visibility:hidden !important;
-  pointer-events:none !important;
-}
-
-.cover-v5__backdrop{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:0;
-}
-.cover-v5__backdrop > img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.cover-v5__backdrop > img:first-child{opacity:.78}
-.cover-v5__backdrop > img:nth-child(2){opacity:.42}
-.cover-v5__backdrop-petals{
-  opacity:.10 !important;
-  object-fit:cover !important;
-}
-
-.cover__petals{
-  position:absolute !important;
-  inset:0 !important;
-  z-index:2 !important;
-  pointer-events:none !important;
-  overflow:hidden !important;
-  opacity:.34 !important;
-  animation:none !important;
-}
-.cover__petals img{
-  position:absolute;
-  inset:-5%;
-  width:110%;
-  height:110%;
-  object-fit:cover;
-  opacity:.72;
-  mix-blend-mode:multiply;
-}
-
-.cover__card{
-  position:relative !important;
-  z-index:10 !important;
-  width:min(92vw,560px) !important;
-  height:min(92svh,820px) !important;
-  min-height:610px !important;
-  padding:0 !important;
-  display:block !important;
-  overflow:hidden !important;
-  isolation:isolate !important;
-  border:0 !important;
-  border-radius:8px !important;
-  background:#fff8f2 !important;
-  box-shadow:
-    0 28px 80px rgba(92,58,58,.20),
-    0 5px 18px rgba(92,58,58,.08) !important;
-  backdrop-filter:none !important;
-  -webkit-backdrop-filter:none !important;
-  cursor:pointer !important;
-  text-align:center !important;
-  color:var(--brown) !important;
-  transition:transform .65s cubic-bezier(.22,.61,.36,1),box-shadow .5s ease !important;
-}
-.cover__card:hover{
-  transform:translateY(-2px) !important;
-  box-shadow:
-    0 32px 86px rgba(92,58,58,.22),
-    0 6px 20px rgba(92,58,58,.09) !important;
-}
-.cover__card::before,
-.cover__card::after{
-  display:none !important;
-}
-
-.cover-v5__paper,
-.cover-v5__watercolor{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-}
-.cover-v5__paper{z-index:1;opacity:.72}
-.cover-v5__watercolor{z-index:2;opacity:.38}
-.cover-v5__paper img,
-.cover-v5__watercolor img{
+.tt-cover__asset{
   display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.cover-v5__garden{
   position:absolute;
-  z-index:12;
-  left:0;
-  right:0;
-  bottom:0;
-  height:34%;
-  overflow:hidden;
-  pointer-events:none;
-}
-.cover-v5__landscape,
-.cover-v5__arch{
-  position:absolute;
-  display:block;
-  pointer-events:none;
-}
-.cover-v5__landscape{
-  left:-2%;
-  right:-2%;
-  bottom:-1%;
-  width:104%;
-  height:100%;
-  object-fit:cover;
-  object-position:center bottom;
-  opacity:.96;
-}
-.cover-v5__arch{
-  left:-8%;
-  right:-8%;
-  bottom:-9%;
-  width:116%;
-  height:116%;
-  object-fit:contain;
-  object-position:center bottom;
-  opacity:.98;
-}
-
-.cover-v5__frame{
-  position:absolute;
-  inset:11px;
-  z-index:72;
-  width:calc(100% - 22px);
-  height:calc(100% - 22px);
-  object-fit:fill;
-  pointer-events:none;
-  opacity:.78;
-}
-
-.cover-v5__corner,
-.cover-v5__branch,
-.cover-v5__floral,
-.cover-v5__botanical,
-.cover-v5__scatter,
-.cover-v5__monogram,
-.cover-v5__corner-ornament,
-.cover-v5__divider{
-  position:absolute;
-  display:block;
+  max-width:none;
   pointer-events:none;
   user-select:none;
+  -webkit-user-drag:none;
 }
-
-.cover-v5__corner{z-index:52;width:47%;height:auto}
-.cover-v5__corner--tl{left:-2%;top:-1%}
-.cover-v5__corner--tr{right:-2%;top:-1%}
-.cover-v5__corner--bl{left:-2%;bottom:-2%}
-.cover-v5__corner--br{right:-2%;bottom:-2%}
-
-.cover-v5__branch{z-index:45;height:auto;object-fit:contain}
-.cover-v5__branch--hang-left{
-  left:-8%;
-  top:-1%;
-  width:31%;
-  opacity:.82;
+.tt-cover__bg,
+.tt-cover__petals-bg,
+.tt-cover__card{
+  position:absolute;
 }
-.cover-v5__branch--hang-right{
-  right:-8%;
-  top:-1%;
-  width:31%;
-  opacity:.80;
+.tt-cover__bg{
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  background:#f8eee8;
 }
-.cover-v5__branch--side-left{
-  left:-10%;
-  top:23%;
-  width:28%;
-  opacity:.55;
-}
-.cover-v5__branch--side-right{
-  right:-10%;
-  top:24%;
-  width:28%;
-  opacity:.52;
-}
-.cover-v5__branch--vine{
-  left:-5%;
-  bottom:15%;
-  width:30%;
-  opacity:.58;
-  transform:rotate(-4deg);
-}
-.cover-v5__branch--berry{
-  right:3%;
-  bottom:17%;
-  width:22%;
-  opacity:.58;
-  transform:rotate(5deg);
-}
-
-.cover-v5__floral{
-  z-index:44;
+.tt-cover__paper{
+  inset:0;
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;
+  opacity:.72;
 }
-.cover-v5__floral--header{
-  left:0;
-  top:1%;
-  opacity:.52;
+.tt-cover__watercolor{
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.34;
+  mix-blend-mode:multiply;
 }
-.cover-v5__floral--footer{
-  left:0;
-  bottom:2%;
-  opacity:.58;
-}
-
-.cover-v5__botanical{z-index:47;height:auto}
-.cover-v5__botanical--cluster{
-  left:-5%;
-  top:15%;
-  width:30%;
-  opacity:.68;
-}
-.cover-v5__botanical--rose{
-  left:5%;
-  top:34%;
-  width:13%;
-  opacity:.78;
-  transform:rotate(-8deg);
-}
-.cover-v5__botanical--bud{
-  left:12%;
-  top:43%;
-  width:11%;
-  opacity:.70;
-  transform:rotate(-16deg);
-}
-.cover-v5__botanical--blossom{
-  right:7%;
-  top:34%;
-  width:11%;
-  opacity:.70;
-}
-.cover-v5__botanical--single{
-  right:15%;
-  top:45%;
-  width:10%;
-  opacity:.68;
-}
-.cover-v5__botanical--white{
-  right:4%;
-  bottom:27%;
-  width:13%;
-  opacity:.82;
-}
-.cover-v5__botanical--pink{
-  left:8%;
-  bottom:26%;
-  width:13%;
-  opacity:.80;
-}
-.cover-v5__botanical--peony{
-  right:0%;
-  bottom:12%;
-  width:20%;
-  opacity:.74;
-}
-.cover-v5__botanical--leaves{
-  left:0%;
-  bottom:13%;
-  width:24%;
-  opacity:.58;
-  transform:rotate(-8deg);
-}
-.cover-v5__botanical--eucalyptus{
-  right:2%;
-  top:17%;
-  width:17%;
-  opacity:.45;
-  transform:rotate(7deg);
-}
-.cover-v5__botanical--filler{
-  left:17%;
-  bottom:18%;
-  width:18%;
-  opacity:.42;
-  transform:rotate(-10deg);
-}
-
-.cover-v5__scatter{
-  z-index:43;
-  width:35%;
-  height:auto;
-  opacity:.36;
-}
-.cover-v5__scatter--leaves{
-  right:8%;
-  top:14%;
-}
-
-.cover-v5__monogram{
-  z-index:68;
+.tt-cover__garden-landscape{
   left:50%;
-  top:5.2%;
-  width:88px;
-  height:88px;
+  bottom:-1%;
+  width:112%;
+  height:38%;
+  object-fit:cover;
+  object-position:center bottom;
   transform:translateX(-50%);
-  object-fit:contain;
   opacity:.94;
 }
-.cover-v5__corner-ornament{
-  z-index:69;
+.tt-cover__garden-arch{
   left:50%;
-  top:15.2%;
-  width:50px;
-  height:50px;
+  bottom:-4%;
+  width:94%;
+  height:48%;
+  object-fit:contain;
+  object-position:center bottom;
+  transform:translateX(-50%);
+  opacity:.98;
+}
+.tt-cover__petals-bg{
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+}
+.tt-cover__petals-bg .tt-cover__asset:first-child{
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.18;
+}
+.tt-cover__petals-bg .tt-cover__asset:last-child{
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.10;
+}
+.tt-cover__card{
+  z-index:5!important;
+  width:min(88vw,570px)!important;
+  height:min(88svh,840px)!important;
+  min-height:590px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(128,80,82,.18)!important;
+  border-radius:18px!important;
+  background:#fffaf5!important;
+  box-shadow:0 24px 70px rgba(91,49,53,.18),inset 0 1px 0 rgba(255,255,255,.9)!important;
+  cursor:pointer!important;
+  isolation:isolate!important;
+  text-align:center!important;
+  color:#564241!important;
+}
+.tt-cover__card::before,
+.tt-cover__card::after{
+  content:none!important;
+}
+.tt-cover__frame{
+  inset:12px;
+  width:calc(100% - 24px);
+  height:calc(100% - 24px);
+  object-fit:fill;
+  z-index:70;
+  opacity:.82;
+}
+.tt-cover__header{
+  position:absolute;
+  z-index:20;
+  left:0;
+  top:0;
+  width:100%;
+  height:29%;
+  overflow:hidden;
+}
+.tt-cover__header img{
+  left:0;
+  top:0;
+  width:100%;
+  height:auto;
+  min-height:100%;
+  object-fit:cover;
+  object-position:center top;
+  opacity:.88;
+}
+.tt-cover__corners,
+.tt-cover__botanical,
+.tt-cover__florals{
+  position:absolute;
+  inset:0;
+  z-index:25;
+  pointer-events:none;
+}
+.tt-cover__corner{width:45%;height:39%;object-fit:contain}
+.tt-cover__corner--tl{left:-3%;top:-2%}
+.tt-cover__corner--tr{right:-3%;top:-2%}
+.tt-cover__corner--bl{left:-4%;bottom:-4%;opacity:.76}
+.tt-cover__corner--br{right:-4%;bottom:-4%;opacity:.78}
+.tt-cover__hanging{width:28%;height:48%;object-fit:contain}
+.tt-cover__hanging--left{left:-7%;top:-2%;transform:rotate(-2deg);opacity:.64}
+.tt-cover__hanging--right{right:-7%;top:-2%;transform:scaleX(-1) rotate(-2deg);opacity:.62}
+.tt-cover__side{width:23%;height:43%;object-fit:contain}
+.tt-cover__side--left{left:-6%;top:29%;opacity:.36}
+.tt-cover__side--right{right:-6%;top:29%;transform:scaleX(-1);opacity:.36}
+.tt-cover__vine{left:2%;top:7%;width:22%;height:47%;object-fit:contain;opacity:.28;transform:rotate(-6deg)}
+.tt-cover__berry{right:3%;top:20%;width:18%;height:34%;object-fit:contain;opacity:.26;transform:scaleX(-1)}
+.tt-cover__leaves--branch{left:12%;bottom:21%;width:18%;height:29%;object-fit:contain;opacity:.22;transform:rotate(-12deg)}
+.tt-cover__leaves--eucalyptus{right:10%;bottom:20%;width:17%;height:31%;object-fit:contain;opacity:.18;transform:rotate(12deg)}
+.tt-cover__leaves--filler{left:35%;bottom:5%;width:22%;height:25%;object-fit:contain;opacity:.18}
+.tt-cover__scatter{inset:0;width:100%;height:100%;object-fit:cover;opacity:.12}
+.tt-cover__footer{
+  left:0;
+  bottom:1%;
+  width:100%;
+  height:25%;
+  object-fit:cover;
+  object-position:center bottom;
+  opacity:.62;
+}
+.tt-cover__cluster{left:-5%;bottom:8%;width:34%;height:31%;object-fit:contain;opacity:.68;transform:rotate(-7deg)}
+.tt-cover__flower{object-fit:contain}
+.tt-cover__flower--rose{left:10%;bottom:20%;width:17%;height:18%;opacity:.54;transform:rotate(-8deg)}
+.tt-cover__flower--bud{right:12%;bottom:25%;width:14%;height:18%;opacity:.44;transform:rotate(8deg)}
+.tt-cover__flower--small{left:28%;bottom:18%;width:11%;height:12%;opacity:.40}
+.tt-cover__flower--single{right:29%;bottom:14%;width:12%;height:14%;opacity:.34}
+.tt-cover__flower--white{left:4%;top:39%;width:14%;height:14%;opacity:.42}
+.tt-cover__flower--pink{right:5%;top:39%;width:15%;height:15%;opacity:.44}
+.tt-cover__flower--peony{right:-2%;bottom:7%;width:25%;height:25%;opacity:.60}
+.tt-cover__ornament{
+  z-index:52;
+  top:24%;
+  left:50%;
+  width:54px;
+  height:54px;
   transform:translateX(-50%);
   object-fit:contain;
   opacity:.62;
 }
-.cover-v5__divider{
-  z-index:69;
+.tt-cover__divider{
+  z-index:52;
   left:50%;
-  top:59%;
-  width:180px;
+  bottom:30%;
+  width:62%;
   height:auto;
   transform:translateX(-50%);
   object-fit:contain;
-  opacity:.48;
+  opacity:.52;
 }
-
-.cover-v5__content{
+.tt-cover__content{
   position:absolute;
   z-index:80;
   left:50%;
-  top:17.5%;
-  width:78%;
+  top:0;
+  width:82%;
+  height:100%;
   transform:translateX(-50%);
   display:flex;
   flex-direction:column;
   align-items:center;
+  padding:38px 0 180px;
   text-align:center;
 }
-.cover-v5__content .cover__eyebrow{
+.tt-cover__monogram{
   position:relative;
-  z-index:2;
+  left:auto;
+  top:auto;
+  width:86px;
+  height:86px;
+  object-fit:contain;
+  margin:0 auto 5px;
+  opacity:.78;
+}
+.tt-cover__eyebrow{
+  position:relative;
   margin:0 0 12px;
-  color:#76595a;
+  color:#76575a;
   font:500 8px/1.2 var(--sans);
   letter-spacing:.34em;
 }
-.cover-v5__content .cover__small{
+.tt-cover__small{
   position:relative;
-  z-index:2;
-  margin:0 0 25px;
-  color:#8a6c69;
-  font:400 8px/1.2 var(--sans);
-  letter-spacing:.17em;
-}
-.cover-v5__content .cover__names{
-  position:relative;
-  z-index:2;
-  width:100%;
   margin:0;
+  color:#927477;
+  font:400 8px/1.2 var(--sans);
+  letter-spacing:.18em;
+}
+.tt-cover__names{
+  position:relative;
   display:flex;
   flex-direction:column;
   align-items:center;
-  color:#514244;
-  font:500 clamp(31px,7vw,50px)/.92 var(--serif);
+  margin:34px 0 0;
+  color:#4f3c3d;
+  font:500 clamp(37px,7vw,58px)/.9 var(--serif);
   letter-spacing:.035em;
-}
-.cover-v5__content .cover__name{
-  display:block;
-  width:100%;
   white-space:nowrap;
-  overflow:visible;
 }
-.cover-v5__content .cover__name--trung{margin-bottom:18px}
-.cover-v5__content .cover__name--trang{margin-top:17px}
-.cover-v5__content .cover__amp{
-  display:block;
-  margin:0;
-  color:#ad7075;
-  font:400 39px/.62 var(--script);
+.tt-cover__names em{
+  margin:12px 0 9px;
+  color:#b86a73;
+  font:400 39px/.7 var(--script);
 }
-.cover-v5__content .cover__line{
-  position:relative;
-  z-index:2;
-  width:58px;
+.tt-cover__line{
+  width:62px;
   height:1px;
-  margin:22px 0 12px;
-  background:rgba(128,80,82,.44);
+  margin:30px 0 15px;
+  background:rgba(137,82,84,.48);
 }
-.cover-v5__content .cover__year{
-  position:relative;
-  z-index:2;
+.tt-cover__year{
   margin:0;
-  color:#76595a;
+  color:#765657;
   font:500 21px/1 var(--serif);
   letter-spacing:.30em;
   padding-left:.30em;
 }
-
-.cover__button{
-  position:relative !important;
-  z-index:3 !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:7px !important;
-  margin-top:28px !important;
-  min-width:148px !important;
-  padding:12px 20px !important;
-  border:1px solid rgba(165,91,99,.68) !important;
-  border-radius:999px !important;
-  background:rgba(174,88,98,.92) !important;
-  color:#fff !important;
-  font:500 8px/1 var(--sans) !important;
-  letter-spacing:.22em !important;
-  box-shadow:0 8px 22px rgba(118,57,62,.16) !important;
-  pointer-events:none !important;
-}
-.cover__button span{margin-left:0}
-.cover__button-heart{font-size:12px !important}
-.cover__hint{
-  position:relative !important;
-  z-index:3 !important;
-  margin:11px 0 0 !important;
-  color:#8d706d !important;
-  font:500 7px/1 var(--sans) !important;
-  letter-spacing:.25em !important;
-}
-
-.cover__countdown{
-  position:absolute !important;
-  left:50% !important;
-  right:auto !important;
-  bottom:12px !important;
-  z-index:90 !important;
-  transform:translateX(-50%) !important;
-  margin:0 !important;
-  pointer-events:none !important;
-}
-.cover__countdown strong{
-  display:block !important;
-  color:rgba(104,75,76,.66) !important;
-  font:500 14px/1 var(--serif) !important;
-  letter-spacing:.08em !important;
-  font-variant-numeric:tabular-nums;
-}
-
-.cover-v5__petals-static{
-  position:absolute;
-  z-index:55;
-  left:50%;
-  bottom:8%;
-  width:58%;
-  transform:translateX(-50%);
-  opacity:.18;
+.tt-cover__button{
+  position:relative;
+  z-index:90;
+  margin-top:38px;
+  min-width:158px;
+  padding:13px 22px;
+  border:1px solid rgba(175,94,102,.62);
+  border-radius:999px;
+  background:#b85f67;
+  color:#fff;
+  font:500 9px/1 var(--sans);
+  letter-spacing:.22em;
+  box-shadow:0 9px 24px rgba(137,65,70,.14);
   pointer-events:none;
 }
-.cover-v5__petals-static img{
-  display:block;
-  width:100%;
-  height:auto;
+.tt-cover__button b{margin-left:7px;font:400 17px/1 var(--serif)}
+.tt-cover__hint{
+  position:relative;
+  margin:14px 0 0;
+  color:#987271;
+  font:500 7px/1 var(--sans);
+  letter-spacing:.28em;
 }
+.tt-cover__countdown{
+  position:absolute;
+  z-index:95;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  color:#786264;
+  pointer-events:none;
+}
+.tt-cover__countdown strong{
+  font:400 11px/1 var(--serif);
+  letter-spacing:.18em;
+}
+.tt-cover__asset-status{display:none!important}
 
-.cover__shine{
-  position:absolute !important;
-  inset:0 !important;
-  z-index:85 !important;
-  pointer-events:none !important;
-  background:linear-gradient(112deg,transparent 42%,rgba(255,255,255,.34) 49%,transparent 56%) !important;
-  transform:translateX(-65%) rotate(8deg) !important;
-  opacity:0 !important;
+.tt-cover.is-opening .tt-cover__card{
+  animation:ttCoverOpen 1.2s cubic-bezier(.2,.72,.18,1) both;
 }
-.invitation-cover.is-opening .cover__shine{
-  animation:coverV5Shine 1.05s ease both !important;
+.tt-cover.is-opening .tt-cover__petals-bg{
+  animation:ttPetalExit 1.1s ease both;
 }
-@keyframes coverV5Shine{
-  0%{transform:translateX(-65%) rotate(8deg);opacity:0}
-  25%{opacity:.75}
-  100%{transform:translateX(65%) rotate(8deg);opacity:0}
-}
-
-.invitation-cover.is-opening .cover__card{
-  animation:coverV5Open 1.15s cubic-bezier(.2,.72,.18,1) both !important;
-}
-@keyframes coverV5Open{
+@keyframes ttCoverOpen{
   0%{transform:scale(1);filter:brightness(1)}
-  45%{transform:scale(1.012);filter:brightness(1.025)}
-  100%{transform:scale(.965) translateY(-8px);filter:brightness(1.07)}
+  45%{transform:scale(1.015);filter:brightness(1.03)}
+  100%{transform:scale(.96) translateY(-8px);filter:brightness(1.07)}
 }
-
-.cover__card.is-loading .cover__button{
-  background:rgba(157,77,87,.94) !important;
-}
+@keyframes ttPetalExit{to{opacity:0;transform:scale(1.06)}}
 
 @media(max-width:700px){
-  .invitation-cover{
-    padding:10px !important;
+  .tt-cover__card{
+    width:88vw!important;
+    height:min(86svh,700px)!important;
+    min-height:0!important;
+    border-radius:16px!important;
   }
-
-  .cover__card{
-    width:92vw !important;
-    height:min(92svh,790px) !important;
-    min-height:600px !important;
-    border-radius:6px !important;
-  }
-
-  .cover-v5__frame{
-    inset:8px;
-    width:calc(100% - 16px);
-    height:calc(100% - 16px);
-    opacity:.72;
-  }
-
-  .cover-v5__garden{
-    height:35%;
-  }
-  .cover-v5__landscape{
-    left:-7%;
-    width:114%;
-  }
-  .cover-v5__arch{
-    left:-13%;
-    right:-13%;
-    width:126%;
-    height:118%;
-  }
-
-  .cover-v5__monogram{
-    top:4.8%;
-    width:74px;
-    height:74px;
-  }
-  .cover-v5__corner-ornament{
-    top:13.8%;
-    width:43px;
-    height:43px;
-  }
-  .cover-v5__divider{
-    top:58%;
-    width:155px;
-  }
-
-  .cover-v5__content{
-    top:16.5%;
-    width:82%;
-  }
-  .cover-v5__content .cover__eyebrow{
-    font-size:7px;
-    letter-spacing:.27em;
-    margin-bottom:10px;
-  }
-  .cover-v5__content .cover__small{
-    font-size:7px;
-    letter-spacing:.14em;
-    margin-bottom:22px;
-  }
-  .cover-v5__content .cover__names{
-    font-size:clamp(29px,8vw,38px);
-    letter-spacing:.015em;
-  }
-  .cover-v5__content .cover__name--trung{margin-bottom:15px}
-  .cover-v5__content .cover__name--trang{margin-top:14px}
-  .cover-v5__content .cover__amp{font-size:35px}
-  .cover-v5__content .cover__line{
-    margin-top:20px;
-    margin-bottom:10px;
-    width:50px;
-  }
-  .cover-v5__content .cover__year{
-    font-size:19px;
-    letter-spacing:.28em;
-    padding-left:.28em;
-  }
-  .cover__button{
-    margin-top:25px !important;
-    min-width:142px !important;
-    padding:11px 18px !important;
-    font-size:7.5px !important;
-  }
-  .cover__hint{
-    margin-top:9px !important;
-    font-size:6.5px !important;
-  }
-
-  .cover-v5__branch--side-left,
-  .cover-v5__branch--side-right{
-    opacity:.34;
-  }
-  .cover-v5__botanical--eucalyptus{
-    opacity:.32;
-  }
-  .cover-v5__botanical--filler{
-    opacity:.30;
-  }
-  .cover-v5__scatter--leaves{
-    opacity:.24;
-  }
-  .cover-v5__petals-static{
-    width:68%;
-    bottom:9%;
-  }
-
-  .cover__countdown{
-    bottom:9px !important;
-  }
-  .cover__countdown strong{
-    font-size:13px !important;
-  }
+  .tt-cover__frame{inset:10px;width:calc(100% - 20px);height:calc(100% - 20px)}
+  .tt-cover__header{height:27%}
+  .tt-cover__garden-landscape{width:125%;height:37%;bottom:0}
+  .tt-cover__garden-arch{width:100%;height:46%;bottom:-3%}
+  .tt-cover__corner{width:48%;height:38%}
+  .tt-cover__hanging{width:30%;height:46%}
+  .tt-cover__side{width:25%;height:41%}
+  .tt-cover__footer{height:23%;bottom:2%}
+  .tt-cover__cluster{width:31%;height:28%;bottom:8%}
+  .tt-cover__ornament{top:23%;width:46px;height:46px}
+  .tt-cover__divider{bottom:29%;width:66%}
+  .tt-cover__content{width:84%;padding-top:30px;padding-bottom:150px}
+  .tt-cover__monogram{width:72px;height:72px;margin-bottom:2px}
+  .tt-cover__eyebrow{font-size:7px;letter-spacing:.28em;margin-bottom:10px}
+  .tt-cover__small{font-size:7px}
+  .tt-cover__names{font-size:39px;margin-top:28px}
+  .tt-cover__names em{font-size:36px;margin:10px 0 8px}
+  .tt-cover__line{margin-top:24px;margin-bottom:13px}
+  .tt-cover__year{font-size:19px}
+  .tt-cover__button{margin-top:31px;min-width:154px;padding:12px 20px}
+  .tt-cover__hint{margin-top:12px;font-size:6.5px}
+  .tt-cover__flower--peony{width:23%;height:23%}
+  .tt-cover__countdown{bottom:10px}
 }
-
-@media(max-width:380px){
-  .cover__card{
-    width:94vw !important;
-    height:min(91svh,735px) !important;
-    min-height:560px !important;
-  }
-  .cover-v5__content{
-    width:84%;
-    top:16%;
-  }
-  .cover-v5__content .cover__names{
-    font-size:28px;
-  }
-  .cover-v5__monogram{
-    width:68px;
-    height:68px;
-  }
-  .cover-v5__garden{
-    height:34%;
-  }
-}
-
 @media(max-height:700px) and (max-width:700px){
-  .cover__card{
-    height:calc(100svh - 24px) !important;
-    min-height:0 !important;
-  }
-  .cover-v5__content{
-    top:12%;
-  }
-  .cover-v5__garden{
-    height:32%;
-  }
-  .cover-v5__monogram{
-    top:3%;
-  }
-  .cover-v5__corner-ornament{
-    top:12%;
-  }
+  .tt-cover__content{padding-top:20px;padding-bottom:125px}
+  .tt-cover__monogram{width:62px;height:62px}
+  .tt-cover__names{font-size:35px;margin-top:20px}
+  .tt-cover__names em{font-size:32px}
+  .tt-cover__button{margin-top:25px}
 }
-
 @media(prefers-reduced-motion:reduce){
-  .invitation-cover.is-opening .cover__card,
-  .invitation-cover.is-opening .cover__shine{
-    animation:none !important;
-  }
+  .tt-cover.is-opening .tt-cover__card,
+  .tt-cover.is-opening .tt-cover__petals-bg{animation:none!important}
 }
