@@ -1,423 +1,158 @@
-/* =========================
-   FRONT WEDDING INVITATION — V2.2
-   MODERN / AIRY / NO TOMBSTONE FRAME
-   ========================= */
-body:not(.invitation-opened){
-  overflow:hidden;
-}
-
 /* =========================================================
-   COVER V3 — FAIRYTALE GARDEN × EDITORIAL
-   Layered from the 34-piece wedding-cover asset library.
-   Opening/countdown logic remains unchanged.
+   TRUNG & TRANG — COVER V4
+   FAIRYTALE GARDEN × WATERCOLOR × MODERN EDITORIAL
+   34/34 wedding-cover assets used as separate layers.
    ========================================================= */
+body:not(.invitation-opened){overflow:hidden;}
+
 .invitation-cover{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  overflow:hidden;
-  display:grid;
-  place-items:center;
-  background:#f4e6e2;
+  position:fixed;inset:0;z-index:100;overflow:hidden;
+  display:grid;place-items:center;
+  background:#f2dfda;
   opacity:1;
   transition:opacity .9s cubic-bezier(.22,.61,.36,1),visibility .9s ease;
 }
-.invitation-cover.is-open{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
+.invitation-cover.is-open{opacity:0;visibility:hidden;pointer-events:none;}
 
-/* Soft full-screen garden atmosphere behind the invitation sheet. */
 .cover__background{
-  position:absolute;
-  inset:-4%;
-  overflow:hidden;
-  background:
-    linear-gradient(180deg,rgba(255,247,244,.38),rgba(255,239,235,.52)),
-    url("assets/images/wedding-cover/33_watercolor_bg.PNG") center/cover no-repeat;
+  position:absolute;inset:-3%;overflow:hidden;
+  background:#f3e2de;
   transform:scale(1.02);
   animation:coverBgBreath 12s ease-in-out infinite alternate;
 }
-.cover__background::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 50% 45%,rgba(255,255,255,.72),transparent 48%),
-    linear-gradient(90deg,rgba(248,221,216,.38),transparent 25%,transparent 75%,rgba(248,221,216,.38));
-}
-.cover__background-wash{
-  position:absolute;
-  inset:0;
+.cover__background-paper{
+  position:absolute;inset:0;
   background:url("assets/images/wedding-cover/34_paper_texture.PNG") center/cover no-repeat;
-  opacity:.24;
-  mix-blend-mode:multiply;
-}
-@keyframes coverBgBreath{
-  from{transform:scale(1.02)}
-  to{transform:scale(1.045)}
-}
-
-.cover__background-flowers{
-  position:absolute;
-  pointer-events:none;
-  background-repeat:no-repeat;
-  background-size:contain;
-  opacity:.34;
-  filter:saturate(.82) blur(1.2px);
-}
-.cover__background-flowers--tl{
-  width:min(46vw,560px);height:min(44vh,420px);left:-110px;top:-75px;
-  background-image:url("assets/images/wedding-cover/15_flower_header.PNG");
-  background-position:left top;
-}
-.cover__background-flowers--tr{
-  width:min(46vw,560px);height:min(44vh,420px);right:-110px;top:-75px;
-  background-image:url("assets/images/wedding-cover/15_flower_header.PNG");
-  background-position:right top;
-  transform:scaleX(-1);
-}
-.cover__background-flowers--bl{
-  width:min(42vw,520px);height:min(38vh,360px);left:-105px;bottom:-70px;
-  background-image:url("assets/images/wedding-cover/16_flower_footer.PNG");
-  background-position:left bottom;
-}
-.cover__background-flowers--br{
-  width:min(42vw,520px);height:min(38vh,360px);right:-105px;bottom:-70px;
-  background-image:url("assets/images/wedding-cover/16_flower_footer.PNG");
-  background-position:right bottom;
-  transform:scaleX(-1);
-}
-.cover__background-petals{
-  position:absolute;
-  inset:0;
-  background:url("assets/images/wedding-cover/29_petals_falling.PNG") center/cover no-repeat;
-  opacity:.16;
-  animation:coverPetalsFloat 13s ease-in-out infinite alternate;
-}
-@keyframes coverPetalsFloat{
-  from{transform:translate3d(0,0,0) scale(1)}
-  to{transform:translate3d(0,-8px,0) scale(1.025)}
-}
-
-/* The invitation sheet. */
-.cover__card{
-  position:relative;
-  z-index:5;
-  width:min(88vw,610px);
-  height:min(820px,calc(100svh - 56px));
-  min-height:590px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#5d3f3e;
-  background:#fff8f2;
-  border:0;
-  border-radius:20px;
-  box-shadow:0 30px 90px rgba(83,51,49,.20),0 4px 18px rgba(83,51,49,.08);
-  cursor:pointer;
-  transition:transform .65s cubic-bezier(.22,.61,.36,1),box-shadow .5s ease;
-  isolation:isolate;
-}
-.cover__card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 34px 100px rgba(83,51,49,.23),0 5px 20px rgba(83,51,49,.10);
-}
-
-.cover__paper,
-.cover__watercolor,
-.cover__frame,
-.cover__corner,
-.cover__branch,
-.cover__flowers-layer,
-.cover__garden,
-.cover__petals{
-  position:absolute;
-  pointer-events:none;
-}
-.cover__paper{
-  inset:0;
-  z-index:-6;
-  background:url("assets/images/wedding-cover/34_paper_texture.PNG") center/cover no-repeat;
-  opacity:.82;
-}
-.cover__watercolor{
-  inset:0;
-  z-index:-5;
-  background:url("assets/images/wedding-cover/33_watercolor_bg.PNG") center/cover no-repeat;
-  opacity:.46;
-  mix-blend-mode:multiply;
-}
-.cover__frame{
-  inset:14px;
-  z-index:6;
-  background:url("assets/images/wedding-cover/02_frame_doubleline.png") center/100% 100% no-repeat;
-  opacity:.78;
-}
-
-.cover__corner{
-  z-index:4;
-  width:38%;
-  height:30%;
-  background-repeat:no-repeat;
-  background-size:contain;
-  filter:saturate(.88);
-  opacity:.95;
-}
-.cover__corner--tl{left:3%;top:2%;background-image:url("assets/images/wedding-cover/05_corner_top_left.png");background-position:left top}
-.cover__corner--tr{right:3%;top:2%;background-image:url("assets/images/wedding-cover/06_corner_top_right.PNG");background-position:right top}
-.cover__corner--bl{left:3%;bottom:2%;background-image:url("assets/images/wedding-cover/07_corner_bottom_left.PNG");background-position:left bottom}
-.cover__corner--br{right:3%;bottom:2%;background-image:url("assets/images/wedding-cover/08_corner_bottom_right.PNG");background-position:right bottom}
-
-.cover__branch{
-  z-index:3;
-  background-repeat:no-repeat;
-  background-size:contain;
-  opacity:.58;
-}
-.cover__branch--left{
-  width:22%;height:32%;left:1%;top:19%;
-  background-image:url("assets/images/wedding-cover/11_side_branch_left.PNG");
-  background-position:left center;
-}
-.cover__branch--right{
-  width:22%;height:32%;right:1%;top:19%;
-  background-image:url("assets/images/wedding-cover/12_side_branch_right.PNG");
-  background-position:right center;
-}
-
-.cover__flowers-layer--top{
-  z-index:3;
-  left:10%;right:10%;top:-2%;height:19%;
-  background:url("assets/images/wedding-cover/15_flower_header.PNG") center top/100% 100% no-repeat;
-  opacity:.58;
-}
-.cover__flowers-layer--bottom{
-  z-index:3;
-  left:10%;right:10%;bottom:-1%;height:20%;
-  background:url("assets/images/wedding-cover/16_flower_footer.PNG") center bottom/100% 100% no-repeat;
-  opacity:.62;
-}
-
-/* Garden scene: landscape first, transparent arch above it. */
-.cover__garden{
-  z-index:2;
-  left:8%;right:8%;bottom:4%;height:28%;
-  overflow:hidden;
-}
-.cover__garden-landscape{
-  position:absolute;
-  inset:0;
-  background:url("assets/images/wedding-cover/32_garden_landscape.PNG") center bottom/cover no-repeat;
-  opacity:.94;
-}
-.cover__garden-arch{
-  position:absolute;
-  inset:-9% -4% -7%;
-  background:url("assets/images/wedding-cover/31_garden_arch.PNG") center bottom/contain no-repeat;
-  opacity:.98;
-}
-
-.cover__petals{
-  z-index:5;
-  inset:0;
-  background:url("assets/images/wedding-cover/30_petals_scatter.PNG") center/cover no-repeat;
-  opacity:.44;
-  animation:coverPetalsFloat 11s ease-in-out infinite alternate-reverse;
-}
-
-.cover__content{
-  position:relative;
-  z-index:10;
-  width:76%;
-  height:100%;
-  padding:42px 0 190px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-}
-.cover__monogram{
-  width:78px;
-  height:78px;
-  margin-bottom:4px;
-  display:grid;
-  place-items:center;
-}
-.cover__monogram img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  filter:saturate(.82);
-}
-.cover__eyebrow{
-  margin:4px 0 12px;
-  color:#785354;
-  font:500 9px/1.2 var(--sans);
-  letter-spacing:.34em;
-  text-transform:uppercase;
-}
-.cover__small{
-  margin:0 0 13px;
-  color:#8b6967;
-  font:400 8px/1.2 var(--sans);
-  letter-spacing:.23em;
-}
-.cover__ornament{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  width:100%;
-  margin:0 0 20px;
-  color:#a97569;
-}
-.cover__ornament span{
-  width:54px;height:1px;background:rgba(161,111,101,.45);
-}
-.cover__ornament b{
-  font:400 16px/1 var(--serif);
-}
-.cover__names{
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  color:#633f40;
-  font:500 clamp(35px,6vw,53px)/.92 var(--serif);
-  letter-spacing:.055em;
-}
-.cover__name{display:block;white-space:nowrap}
-.cover__name--trung{margin-bottom:13px}
-.cover__name--trang{margin-top:13px}
-.cover__amp{
-  display:block;
-  color:#bd7477;
-  font:400 34px/.65 var(--script);
-}
-.cover__line{
-  width:62px;height:1px;margin:18px 0 11px;
-  background:rgba(164,110,102,.46);
-}
-.cover__year{
-  margin:0;
-  color:#765252;
-  font:500 20px/1 var(--serif);
-  letter-spacing:.38em;
-  padding-left:.38em;
-}
-.cover__button{
-  position:relative;
-  z-index:12;
-  margin-top:29px;
-  min-width:168px;
-  padding:13px 25px;
-  border:1px solid rgba(173,100,105,.58);
-  border-radius:999px;
-  background:rgba(181,102,108,.90);
-  color:#fffaf8;
-  font:500 9px/1 var(--sans);
-  letter-spacing:.23em;
-  box-shadow:0 10px 25px rgba(128,66,71,.17);
-  pointer-events:none;
-}
-.cover__button-label{margin-left:.23em}
-.cover__button-heart{margin-left:7px;font-size:14px}
-.cover__button-spinner{display:none}
-.cover__hint{
-  margin:12px 0 0;
-  color:#98716f;
-  font:500 7px/1 var(--sans);
-  letter-spacing:.28em;
-}
-
-.cover__countdown{
-  position:absolute;
-  z-index:20;
-  right:27px;
-  bottom:24px;
-  color:#805e5d;
-  text-align:right;
-  pointer-events:none;
-}
-.cover__countdown strong{
-  display:block;
-  font:500 12px/1 var(--serif);
-  letter-spacing:.20em;
-}
-
-/* Opening states are intentionally subtle; JS still controls timing. */
-.invitation-cover.is-loading .cover__button{
   opacity:.72;
 }
-.invitation-cover.is-opening .cover__card{
-  transform:scale(1.012);
+.cover__background-watercolor{
+  position:absolute;inset:0;
+  background:url("assets/images/wedding-cover/33_watercolor_bg.PNG") center/cover no-repeat;
+  opacity:.62;
+  mix-blend-mode:multiply;
 }
+.cover__background::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 42%,rgba(255,252,249,.76),transparent 48%),linear-gradient(90deg,rgba(247,220,216,.25),transparent 25%,transparent 75%,rgba(247,220,216,.25));
+}
+@keyframes coverBgBreath{from{transform:scale(1.02)}to{transform:scale(1.045)}}
+
+.cover__background-flower{
+  position:absolute;pointer-events:none;background-repeat:no-repeat;background-size:contain;
+  opacity:.42;filter:saturate(.84) blur(1px);
+}
+.cover__background-flower--tl{width:47vw;height:39vh;max-width:560px;left:-110px;top:-65px;background-image:url("assets/images/wedding-cover/15_flower_header.PNG");background-position:left top;}
+.cover__background-flower--tr{width:47vw;height:39vh;max-width:560px;right:-110px;top:-65px;background-image:url("assets/images/wedding-cover/15_flower_header.PNG");background-position:right top;transform:scaleX(-1);}
+.cover__background-flower--bl{width:44vw;height:34vh;max-width:540px;left:-110px;bottom:-65px;background-image:url("assets/images/wedding-cover/16_flower_footer.PNG");background-position:left bottom;}
+.cover__background-flower--br{width:44vw;height:34vh;max-width:540px;right:-110px;bottom:-65px;background-image:url("assets/images/wedding-cover/16_flower_footer.PNG");background-position:right bottom;transform:scaleX(-1);}
+.cover__background-petals{position:absolute;inset:0;background:url("assets/images/wedding-cover/29_petals_falling.PNG") center/cover no-repeat;opacity:.14;animation:coverPetalsFloat 13s ease-in-out infinite alternate;}
+@keyframes coverPetalsFloat{from{transform:translateY(0)}to{transform:translateY(-8px) scale(1.02)}}
+
+.cover__card{
+  position:relative;z-index:5;width:min(90vw,610px);height:min(830px,calc(100svh - 42px));min-height:590px;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;
+  color:#5d3f3e;background:#fff8f2;border-radius:22px;
+  box-shadow:0 30px 90px rgba(83,51,49,.19),0 4px 18px rgba(83,51,49,.08);
+  cursor:pointer;transition:transform .65s cubic-bezier(.22,.61,.36,1),box-shadow .5s ease;isolation:isolate;
+}
+.cover__card:hover{transform:translateY(-2px);box-shadow:0 34px 100px rgba(83,51,49,.22),0 5px 20px rgba(83,51,49,.10);}
+
+.cover__paper,.cover__watercolor,.cover__frame,.cover__corner,.cover__hanging,.cover__side-branch,.cover__vine,.cover__berry,.cover__cluster,.cover__single-flower,.cover__rose,.cover__bud,.cover__blossom,.cover__white-rose,.cover__pink-rose,.cover__peony,.cover__leaves-branch,.cover__eucalyptus,.cover__green-filler,.cover__leaves-scatter,.cover__ornament-top,.cover__divider,.cover__garden,.cover__petals,.cover__petals-falling{position:absolute;pointer-events:none;}
+
+.cover__paper{inset:0;z-index:-10;background:url("assets/images/wedding-cover/34_paper_texture.PNG") center/cover no-repeat;opacity:.82;}
+.cover__watercolor{inset:0;z-index:-9;background:url("assets/images/wedding-cover/33_watercolor_bg.PNG") center/cover no-repeat;opacity:.40;mix-blend-mode:multiply;}
+.cover__frame{inset:13px;z-index:18;background:url("assets/images/wedding-cover/02_frame_doubleline.png") center/100% 100% no-repeat;opacity:.80;}
+
+.cover__corner{z-index:14;width:40%;height:31%;background-repeat:no-repeat;background-size:contain;filter:saturate(.88);opacity:.96;}
+.cover__corner--tl{left:2.5%;top:1.5%;background-image:url("assets/images/wedding-cover/05_corner_top_left.png");background-position:left top;}
+.cover__corner--tr{right:2.5%;top:1.5%;background-image:url("assets/images/wedding-cover/06_corner_top_right.PNG");background-position:right top;}
+.cover__corner--bl{left:2.5%;bottom:1.5%;background-image:url("assets/images/wedding-cover/07_corner_bottom_left.PNG");background-position:left bottom;}
+.cover__corner--br{right:2.5%;bottom:1.5%;background-image:url("assets/images/wedding-cover/08_corner_bottom_right.PNG");background-position:right bottom;}
+
+/* Decorative branches — deliberately lighter than the four main corners. */
+.cover__hanging{z-index:11;background-repeat:no-repeat;background-size:contain;opacity:.44;}
+.cover__hanging--left{width:18%;height:27%;left:-1%;top:3%;background-image:url("assets/images/wedding-cover/09_hanging_branch_left.PNG");background-position:left top;}
+.cover__hanging--right{width:18%;height:27%;right:-1%;top:3%;background-image:url("assets/images/wedding-cover/10_hanging_branch_right.PNG");background-position:right top;}
+.cover__side-branch{z-index:11;background-repeat:no-repeat;background-size:contain;opacity:.30;}
+.cover__side-branch--left{width:19%;height:28%;left:2%;top:30%;background-image:url("assets/images/wedding-cover/11_side_branch_left.PNG");background-position:left center;}
+.cover__side-branch--right{width:19%;height:28%;right:2%;top:30%;background-image:url("assets/images/wedding-cover/12_side_branch_right.PNG");background-position:right center;}
+.cover__vine{z-index:11;width:18%;height:30%;left:2%;top:48%;background:url("assets/images/wedding-cover/13_vine_branch.PNG") left center/contain no-repeat;opacity:.24;transform:rotate(-5deg);}
+.cover__berry{z-index:11;width:16%;height:24%;right:2%;top:49%;background:url("assets/images/wedding-cover/14_berry_branch.PNG") right center/contain no-repeat;opacity:.28;transform:rotate(3deg);}
+
+/* Individual floral library elements — all visible, but used as quiet accents. */
+.cover__cluster{z-index:13;width:17%;height:15%;background:url("assets/images/wedding-cover/17_flower_cluster.PNG") center/contain no-repeat;opacity:.68;}
+.cover__cluster--left{left:10%;top:12%;transform:rotate(-8deg);}
+.cover__cluster--right{right:10%;top:12%;transform:scaleX(-1) rotate(-8deg);}
+.cover__single-flower{z-index:15;width:9%;height:10%;background:url("assets/images/wedding-cover/21_single_flower.PNG") center/contain no-repeat;opacity:.68;}
+.cover__single-flower--left{left:12%;top:42%;transform:rotate(-14deg);}
+.cover__single-flower--right{right:12%;top:43%;transform:scaleX(-1) rotate(-10deg);}
+.cover__rose{z-index:15;width:10%;height:10%;background:url("assets/images/wedding-cover/18_rose_blossom.PNG") center/contain no-repeat;opacity:.70;}
+.cover__rose--left{left:8%;top:65%;transform:rotate(-8deg);}
+.cover__rose--right{right:8%;top:65%;transform:scaleX(-1) rotate(-8deg);}
+.cover__bud{z-index:15;width:7%;height:11%;background:url("assets/images/wedding-cover/19_rose_bud.PNG") center/contain no-repeat;opacity:.68;}
+.cover__bud--left{left:17%;top:58%;transform:rotate(-15deg);}
+.cover__bud--right{right:17%;top:58%;transform:scaleX(-1) rotate(-12deg);}
+.cover__blossom{z-index:15;width:7%;height:8%;background:url("assets/images/wedding-cover/20_blossom_small.PNG") center/contain no-repeat;opacity:.64;}
+.cover__blossom--left{left:14%;top:52%;}
+.cover__blossom--right{right:14%;top:52%;transform:scaleX(-1);}
+.cover__white-rose{z-index:15;width:9%;height:9%;left:24%;bottom:17%;background:url("assets/images/wedding-cover/22_white_rose.PNG") center/contain no-repeat;opacity:.68;transform:rotate(-9deg);}
+.cover__pink-rose{z-index:15;width:9%;height:9%;right:24%;bottom:17%;background:url("assets/images/wedding-cover/23_pink_rose.PNG") center/contain no-repeat;opacity:.68;transform:scaleX(-1) rotate(-7deg);}
+.cover__peony{z-index:15;width:11%;height:11%;left:44%;bottom:14%;background:url("assets/images/wedding-cover/24_peony.PNG") center/contain no-repeat;opacity:.55;}
+.cover__leaves-branch{z-index:11;width:16%;height:20%;left:4%;bottom:13%;background:url("assets/images/wedding-cover/25_leaves_branch.PNG") left bottom/contain no-repeat;opacity:.38;transform:rotate(-7deg);}
+.cover__eucalyptus{z-index:11;width:13%;height:21%;right:4%;bottom:13%;background:url("assets/images/wedding-cover/26_eucalyptus.PNG") right bottom/contain no-repeat;opacity:.30;transform:rotate(7deg);}
+.cover__green-filler{z-index:12;width:13%;height:17%;left:30%;bottom:9%;background:url("assets/images/wedding-cover/27_green_filler.PNG") center bottom/contain no-repeat;opacity:.34;transform:rotate(-5deg);}
+.cover__leaves-scatter{z-index:16;inset:7% 6% 8%;background:url("assets/images/wedding-cover/28_leaves_scatter.PNG") center/cover no-repeat;opacity:.16;}
+
+.cover__ornament-top{z-index:19;top:10.2%;left:50%;width:42px;height:30px;transform:translateX(-50%);background:url("assets/images/wedding-cover/03_corner_ornament.png") center/contain no-repeat;opacity:.64;}
+.cover__divider{z-index:19;left:50%;top:69%;width:190px;height:34px;transform:translateX(-50%);background:url("assets/images/wedding-cover/04_divider_ornament.png") center/contain no-repeat;opacity:.32;}
+
+/* Garden scene: intentionally visible and clearly separated from the typography. */
+.cover__garden{z-index:8;left:6%;right:6%;bottom:2.5%;height:29%;overflow:hidden;}
+.cover__garden-landscape{position:absolute;inset:5% 0 0;background:url("assets/images/wedding-cover/32_garden_landscape.PNG") center bottom/cover no-repeat;opacity:.88;}
+.cover__garden-arch{position:absolute;inset:-5% -5% -9%;background:url("assets/images/wedding-cover/31_garden_arch.PNG") center bottom/contain no-repeat;opacity:.92;}
+
+.cover__petals{z-index:17;inset:0;background:url("assets/images/wedding-cover/30_petals_scatter.PNG") center/cover no-repeat;opacity:.28;}
+.cover__petals-falling{z-index:20;inset:0;background:url("assets/images/wedding-cover/29_petals_falling.PNG") center/cover no-repeat;opacity:.18;animation:coverPetalsFloat 12s ease-in-out infinite alternate-reverse;}
+
+.cover__content{position:relative;z-index:30;width:78%;height:100%;padding:45px 0 205px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;}
+.cover__monogram{width:82px;height:82px;margin-bottom:1px;display:grid;place-items:center;}
+.cover__monogram img{display:block;width:100%;height:100%;object-fit:contain;filter:saturate(.82);}
+.cover__eyebrow{margin:4px 0 12px;color:#765151;font:500 9px/1.2 var(--sans);letter-spacing:.34em;text-transform:uppercase;}
+.cover__small{margin:0 0 13px;color:#8b6967;font:400 8px/1.2 var(--sans);letter-spacing:.23em;}
+.cover__ornament{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin:0 0 19px;color:#a97569;}
+.cover__ornament span{width:53px;height:1px;background:rgba(161,111,101,.45);}
+.cover__ornament b{font:400 16px/1 var(--serif);}
+.cover__names{margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#633f40;font:500 clamp(35px,6vw,53px)/.92 var(--serif);letter-spacing:.055em;}
+.cover__name{display:block;white-space:nowrap;}
+.cover__name--trung{margin-bottom:13px;}.cover__name--trang{margin-top:13px;}
+.cover__amp{display:block;color:#bd7477;font:400 34px/.65 var(--script);}
+.cover__line{width:62px;height:1px;margin:18px 0 10px;background:rgba(164,110,102,.46);}
+.cover__year{margin:0;color:#765252;font:500 20px/1 var(--serif);letter-spacing:.38em;padding-left:.38em;}
+.cover__button{position:relative;z-index:31;margin-top:27px;min-width:168px;padding:13px 25px;border:1px solid rgba(173,100,105,.58);border-radius:999px;background:rgba(181,102,108,.90);color:#fffaf8;font:500 9px/1 var(--sans);letter-spacing:.23em;box-shadow:0 10px 25px rgba(128,66,71,.17);pointer-events:none;}
+.cover__button-label{margin-left:.23em}.cover__button-heart{margin-left:7px;font-size:14px}.cover__button-spinner{display:none}
+.cover__hint{margin:12px 0 0;color:#98716f;font:500 7px/1 var(--sans);letter-spacing:.28em;}
+
+/* Countdown is deliberately centered at the very bottom of the card. */
+.cover__countdown{position:absolute;z-index:60;left:50%;bottom:19px;right:auto;transform:translateX(-50%);color:#80605e;text-align:center;pointer-events:none;}
+.cover__countdown strong{display:block;font:500 11px/1 var(--serif);letter-spacing:.22em;}
+
+.invitation-cover.is-loading .cover__button{opacity:.72;}
+.invitation-cover.is-opening .cover__card{transform:scale(1.012);}
 
 @media(max-width:700px){
-  .cover__background-flowers--tl,
-  .cover__background-flowers--tr{width:58vw;height:34vh;top:-35px}
-  .cover__background-flowers--tl{left:-85px}
-  .cover__background-flowers--tr{right:-85px}
-  .cover__background-flowers--bl,
-  .cover__background-flowers--br{width:55vw;height:30vh;bottom:-35px}
-  .cover__background-flowers--bl{left:-90px}
-  .cover__background-flowers--br{right:-90px}
-
-  .cover__card{
-    width:90vw;
-    height:min(760px,calc(100svh - 36px));
-    min-height:0;
-    border-radius:18px;
-  }
-  .cover__frame{inset:10px}
-  .cover__content{
-    width:78%;
-    padding-top:34px;
-    padding-bottom:150px;
-  }
-  .cover__monogram{width:66px;height:66px}
-  .cover__eyebrow{font-size:8px;letter-spacing:.27em}
-  .cover__small{font-size:7px;letter-spacing:.18em;margin-bottom:11px}
-  .cover__ornament{margin-bottom:17px}
-  .cover__ornament span{width:38px}
-  .cover__names{font-size:clamp(30px,8.7vw,43px);letter-spacing:.045em}
-  .cover__name--trung{margin-bottom:11px}
-  .cover__name--trang{margin-top:11px}
-  .cover__amp{font-size:31px}
-  .cover__line{margin-top:16px;margin-bottom:9px}
-  .cover__year{font-size:18px}
-  .cover__button{margin-top:25px;min-width:154px;padding:12px 20px;font-size:8px}
-  .cover__hint{font-size:6.5px;margin-top:10px}
-  .cover__garden{left:5%;right:5%;bottom:3%;height:25%}
-  .cover__flowers-layer--top{left:6%;right:6%;height:18%}
-  .cover__flowers-layer--bottom{left:6%;right:6%;height:18%}
-  .cover__branch{opacity:.48}
-  .cover__countdown{right:21px;bottom:18px}
-  .cover__countdown strong{font-size:10px}
+  .cover__background-flower--tl,.cover__background-flower--tr{width:60vw;height:34vh;top:-34px;}.cover__background-flower--tl{left:-92px}.cover__background-flower--tr{right:-92px}
+  .cover__background-flower--bl,.cover__background-flower--br{width:58vw;height:30vh;bottom:-36px;}.cover__background-flower--bl{left:-94px}.cover__background-flower--br{right:-94px}
+  .cover__card{width:90vw;height:min(760px,calc(100svh - 36px));min-height:0;border-radius:18px;}
+  .cover__frame{inset:10px;}
+  .cover__content{width:79%;padding-top:34px;padding-bottom:154px;}
+  .cover__monogram{width:66px;height:66px}.cover__eyebrow{font-size:8px;letter-spacing:.27em}.cover__small{font-size:7px;letter-spacing:.18em;margin-bottom:11px}
+  .cover__ornament{margin-bottom:16px}.cover__ornament span{width:38px}.cover__names{font-size:clamp(30px,8.7vw,43px);letter-spacing:.045em}.cover__name--trung{margin-bottom:11px}.cover__name--trang{margin-top:11px}.cover__amp{font-size:31px}
+  .cover__line{margin-top:16px;margin-bottom:9px}.cover__year{font-size:18px}.cover__button{margin-top:24px;min-width:154px;padding:12px 20px;font-size:8px}.cover__hint{font-size:6.5px;margin-top:10px}
+  .cover__garden{left:5%;right:5%;bottom:3%;height:27%;}.cover__hanging{opacity:.30}.cover__side-branch{opacity:.24}.cover__vine,.cover__berry{opacity:.20}.cover__cluster{width:19%;height:15%}.cover__single-flower,.cover__rose{opacity:.58}.cover__peony{opacity:.45}.cover__leaves-scatter{opacity:.12}.cover__ornament-top{top:10.5%;width:34px;height:25px}.cover__divider{top:68.5%;width:160px;height:30px}
+  .cover__countdown{left:50%;bottom:14px;transform:translateX(-50%);}.cover__countdown strong{font-size:10px;letter-spacing:.20em}
 }
-
-@media(max-height:700px) and (max-width:700px){
-  .cover__content{padding-top:25px;padding-bottom:125px}
-  .cover__monogram{width:56px;height:56px}
-  .cover__ornament{margin-bottom:13px}
-  .cover__button{margin-top:19px}
-  .cover__garden{height:23%}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .cover__background,
-  .cover__background-petals,
-  .cover__petals{
-    animation:none!important;
-  }
-  .cover__card{transition:none!important}
-}
+@media(max-height:700px) and (max-width:700px){.cover__content{padding-top:25px;padding-bottom:130px}.cover__monogram{width:56px;height:56px}.cover__ornament{margin-bottom:13px}.cover__button{margin-top:19px}.cover__garden{height:24%;}}
+@media(prefers-reduced-motion:reduce){.cover__background,.cover__background-petals,.cover__petals-falling{animation:none!important}.cover__card{transition:none!important}}
 
 .wedding-page{
   min-height:100vh;
