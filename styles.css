@@ -3768,38 +3768,45 @@ h2{
 
 
 /* =========================================================
-   COVER COUNTDOWN — V2
-   One small number, lower-right editorial placement.
+   COVER COUNTDOWN — V3
+   Small number centered at the very bottom of the cover.
+   Kept above the garden layers so it is never hidden.
    ========================================================= */
 
 .cover__countdown{
   position:absolute;
-  right:38px;
-  bottom:34px;
-  z-index:4;
+  left:50%;
+  right:auto;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:60;
   display:block;
   margin:0;
   color:var(--rose-dark);
   pointer-events:none;
+  text-align:center;
 }
 
 .cover__countdown strong{
   display:block;
-  font:500 16px/1 var(--serif);
-  letter-spacing:.08em;
-  color:rgba(128,80,82,.68);
+  font:500 14px/1 var(--serif);
+  letter-spacing:.10em;
+  color:rgba(128,80,82,.72);
   font-variant-numeric:tabular-nums;
+  text-shadow:0 1px 4px rgba(255,248,245,.72);
 }
 
 @media(max-width:700px){
   .cover__countdown{
-    right:31px;
-    bottom:30px;
+    left:50%;
+    right:auto;
+    bottom:17px;
+    transform:translateX(-50%);
   }
 
   .cover__countdown strong{
-    font-size:15px;
-    letter-spacing:.07em;
+    font-size:13px;
+    letter-spacing:.08em;
   }
 }
 
