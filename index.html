@@ -16,7 +16,7 @@
   <section class="invitation-cover" id="invitationCover" aria-label="Mở thiệp cưới">
     <div class="cover__backdrop" aria-hidden="true"></div>
 
-    <div class="cover__card" id="openInvitation" role="button" tabindex="0" aria-label="Nhấn để mở thiệp" aria-expanded="false">
+    <div class="cover__card" id="openInvitation" role="button" tabindex="0" aria-label="Nhấn để mở thiệp" aria-expanded="false" aria-controls="weddingPage">
       <img
         class="cover__artwork"
         src="assets/images/wedding-cover-concept.jpg"
@@ -25,6 +25,7 @@
         decoding="async">
 
       <div class="cover__content">
+        <!-- V11: balanced typography + heart-shaped opening control -->
         <p class="cover__eyebrow">WEDDING INVITATION</p>
         <p class="cover__small">TRÂN TRỌNG KÍNH MỜI</p>
         <h1 class="cover__names">
@@ -40,9 +41,6 @@
         </button>
         <p class="cover__hint">CHẠM ĐỂ MỞ</p>
       </div>
-      <button class="cover__hotspot" type="button" aria-label="Mở thiệp">
-        <span class="sr-only">Mở thiệp</span>
-      </button>
     </div>
   </section>
 
@@ -476,6 +474,7 @@
       invitationOpening = true;
       cover.classList.add('is-loading');
       openInvitation.setAttribute('aria-busy','true');
+      openInvitation.setAttribute('aria-expanded','true');
 
       const startedAt = performance.now();
       const firstScreenAssets = [

@@ -4713,3 +4713,136 @@ h2{
     max-width:calc(100vw - 32px) !important;
   }
 }
+
+
+/* COVER V11 — typography balance + heart-shaped OPEN button */
+.invitation-cover .cover__content{
+  overflow:visible !important;
+}
+
+/* Spread the copy more evenly through the clear center of the artwork. */
+.invitation-cover .cover__eyebrow{
+  top:33.7% !important;
+  width:86% !important;
+  font-size:clamp(7px,1vw,10px) !important;
+  letter-spacing:.30em !important;
+}
+
+.invitation-cover .cover__small{
+  top:36.7% !important;
+  width:88% !important;
+  font-size:clamp(7px,.92vw,9px) !important;
+  letter-spacing:.18em !important;
+}
+
+.invitation-cover .cover__card h1.cover__names{
+  top:41.0% !important;
+  width:90% !important;
+  font-size:clamp(29px,5.75vw,52px) !important;
+  line-height:.96 !important;
+  letter-spacing:.018em !important;
+}
+
+.invitation-cover .cover__name--trung{
+  margin:0 0 7px !important;
+}
+
+.invitation-cover .cover__name--trang{
+  margin:7px 0 0 !important;
+}
+
+.invitation-cover .cover__card h1 .cover__amp{
+  font-size:clamp(25px,3.45vw,38px) !important;
+  line-height:.65 !important;
+}
+
+.invitation-cover .cover__line{
+  top:57.7% !important;
+  width:46px !important;
+  opacity:.82 !important;
+}
+
+.invitation-cover .cover__year{
+  top:59.2% !important;
+  font-size:clamp(17px,2vw,22px) !important;
+  letter-spacing:.31em !important;
+  padding-left:.31em !important;
+}
+
+/* Heart-shaped opening control. The whole cover remains clickable. */
+.invitation-cover .cover__button{
+  top:65.7% !important;
+  width:148px !important;
+  min-width:148px !important;
+  height:116px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:rgba(184,95,103,.92) !important;
+  color:#fff !important;
+  font-size:8px !important;
+  letter-spacing:.18em !important;
+  line-height:1 !important;
+  clip-path:polygon(
+    50% 93%,
+    9% 47%, 4% 34%, 6% 21%,
+    15% 11%, 27% 8%, 39% 12%,
+    50% 25%,
+    61% 12%, 73% 8%, 85% 11%,
+    94% 21%, 96% 34%, 91% 47%
+  ) !important;
+  filter:drop-shadow(0 9px 15px rgba(111,55,61,.18)) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  pointer-events:none !important;
+}
+
+.invitation-cover .cover__button-label{
+  display:block !important;
+  transform:translateY(-1px) !important;
+  font-size:8px !important;
+  letter-spacing:.18em !important;
+}
+
+.invitation-cover .cover__button-heart{
+  display:none !important;
+}
+
+.invitation-cover .cover__hint{
+  top:74.7% !important;
+  font-size:6.5px !important;
+  letter-spacing:.23em !important;
+  color:#806666 !important;
+}
+
+@media (max-width:700px){
+  .invitation-cover .cover__eyebrow{top:33.7% !important; font-size:7px !important;}
+  .invitation-cover .cover__small{top:36.7% !important; font-size:7px !important;}
+  .invitation-cover .cover__card h1.cover__names{
+    top:41.0% !important;
+    width:90% !important;
+    font-size:clamp(28px,7.8vw,43px) !important;
+  }
+  .invitation-cover .cover__card h1 .cover__amp{
+    font-size:clamp(24px,5.8vw,33px) !important;
+  }
+  .invitation-cover .cover__line{top:57.7% !important; width:44px !important;}
+  .invitation-cover .cover__year{top:59.2% !important; font-size:18px !important;}
+  .invitation-cover .cover__button{
+    top:65.8% !important;
+    width:138px !important;
+    min-width:138px !important;
+    height:108px !important;
+  }
+  .invitation-cover .cover__button-label{font-size:7px !important; letter-spacing:.17em !important;}
+  .invitation-cover .cover__hint{top:74.6% !important; font-size:6px !important;}
+}
+
+@media (max-width:374px){
+  .invitation-cover .cover__button{
+    width:130px !important;
+    min-width:130px !important;
+    height:102px !important;
+  }
+}
