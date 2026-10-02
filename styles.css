@@ -4552,3 +4552,69 @@ h2{
 @media(prefers-reduced-motion:reduce){
   .invitation-cover .cover__backdrop{filter:blur(8px) saturate(.92) !important}
 }
+
+/* =========================================================
+   COVER V9 — FINAL RATIO + BACKDROP FIX
+   - Dedicated backdrop MUST be visible
+   - No hero-garden fallback
+   - Card keeps exact 2:3 ratio
+   - Card scales by height on tablets/phones without distortion
+   ========================================================= */
+.invitation-cover::after{
+  display:none !important;
+  content:none !important;
+}
+
+.invitation-cover::before{
+  z-index:1 !important;
+  background:
+    linear-gradient(180deg,rgba(255,249,246,.05),rgba(255,246,242,.10)) !important;
+}
+
+.invitation-cover .cover__backdrop{
+  display:block !important;
+  visibility:visible !important;
+  position:absolute !important;
+  inset:-8% !important;
+  z-index:0 !important;
+  background-image:url("assets/images/wedding-cover-backdrop.png") !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+  filter:blur(12px) saturate(.94) !important;
+  transform:scale(1.08) !important;
+  opacity:.95 !important;
+}
+
+.invitation-cover .cover__card{
+  width:auto !important;
+  height:min(86svh,920px) !important;
+  max-width:calc(100vw - 28px) !important;
+  max-height:calc(100svh - 30px) !important;
+  aspect-ratio:2 / 3 !important;
+  flex:0 0 auto !important;
+}
+
+.invitation-cover .cover__artwork{
+  object-fit:cover !important;
+  object-position:center center !important;
+}
+
+@media (max-width:700px){
+  .invitation-cover{
+    padding:10px 10px 16px !important;
+  }
+  .invitation-cover .cover__card{
+    height:auto !important;
+    width:min(calc(100vw - 24px), calc((100svh - 28px) * .6666667)) !important;
+    max-width:calc(100vw - 24px) !important;
+    aspect-ratio:2 / 3 !important;
+  }
+}
+
+@media (min-width:701px){
+  .invitation-cover .cover__card{
+    width:auto !important;
+    height:min(86svh,920px) !important;
+  }
+}
